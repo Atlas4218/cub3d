@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:31:13 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 15:42:25 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:53:19 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	strafe_right_left(t_data *data)
 		if (data->map[(int)(data->ray.posx + (data->ray.planex
 					* data->ray.movespeed))][(int)data->ray.posy] == '0')
 			data->ray.posx += data->ray.planex * data->ray.movespeed;
-		if (data->map[(int)data->ray.posx][(int)data->ray.posy
-			+ data->ray.planey * data->ray.movespeed] == '0')
+		if (data->map[(int)data->ray.posx][(int)(data->ray.posy
+			+ data->ray.planey * (data->ray.movespeed))] == '0')
 			data->ray.posy += data->ray.planey * data->ray.movespeed;
 	}
 }

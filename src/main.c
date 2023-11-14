@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 11:38:20 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:33:05 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	handle_keyevent(int keycode, t_data *data)
 {
 	if (keycode == XK_Escape)
 		closer(data);
-
-
 	return (0);
 }
 

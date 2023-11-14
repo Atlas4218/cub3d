@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 14:43:31 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:11:16 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_xpm
 
 typedef struct s_vector
 {
-	int		x;
-	int		y;
+	int		mapx;
+	int		mapy;
 	int		stepx;
 	int		stepy;
 	int		hit;
@@ -79,8 +79,8 @@ typedef struct s_data
 	int			straferight;
 	int			rotateright;
 	int			rotateleft;
-	int			swidth;
-	int			sheight;
+	int			screen_width;
+	int			screen_height;
 	void		*mlx;
 	void		*mlx_win;
 	t_vector	ray;
