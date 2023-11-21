@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 18:11:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/21 16:29:16 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_xpm
 
 typedef struct s_vector
 {
+	int		*data_addr;
 	int		mapx;
 	int		mapy;
 	int		stepx;
@@ -42,6 +43,9 @@ typedef struct s_vector
 	int		lineheight;
 	int		drawstart;
 	int		drawend;	
+	int		bpp;
+	int		size_l;
+	int		endian;
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -57,6 +61,7 @@ typedef struct s_vector
 	double	sidedisty;
 	double	deltadistx;
 	double	deltadisty;
+	void	*ray_ptr;
 
 }	t_vector;
 
@@ -81,7 +86,7 @@ typedef struct s_data
 	int			rotateleft;
 	int			screen_width;
 	int			screen_height;
-	void		*mlx;
+	void		*mlx_ptr;
 	void		*mlx_win;
 	t_vector	ray;
 }	t_data;
@@ -91,5 +96,6 @@ int		init_data(t_data *data);
 int		parse_map(char **map, t_data *data);
 int		closer(t_data *data);
 char	**get_map(char *filename);
+int		raycasting(t_data *data);
 
 #endif
