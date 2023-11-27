@@ -6,13 +6,16 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/11/20 14:27:12 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/11/23 14:30:32 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= cub3D
 CC 				= gcc
 SRC 			= main.c \
+				raycast_move.c \
+				raycast_screen.c \
+				raycasting.c \
 				
 				
 
@@ -26,7 +29,7 @@ HEADER			=	./inc/cub3D.h
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SRC))
 OBJ 			= $(SOURCES:.c=.o)
 FLAGS 			= -Wall -Werror -Wextra -g3
-MLX				= -Lminilibx-linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -L. -lmlx
+MLX				= -Lminilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -L. -lmlx
 
 all : $(NAME)
 
@@ -38,7 +41,7 @@ lib :
 
 
 
-$(NAME):		$(LIBFT)  $(OBJ) $(HEADER) $(MINILIBX)
+$(NAME):		$(LIBFT) $(MINILIBX) $(OBJ) $(HEADER) 
 				$(CC) $(OBJ) $(MLX) $(LIBFT) $(MINILIBX) -o $(NAME) 
 				
 $(LIBFT):

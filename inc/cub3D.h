@@ -6,12 +6,12 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/21 16:29:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:39:26 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
-# define CUBE3D_H
+# define CUB3D_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -41,11 +41,13 @@ typedef struct s_vector
 	int		side;
 	int		perpwalldist;
 	int		lineheight;
+	int		line_length;
 	int		drawstart;
 	int		drawend;	
 	int		bpp;
 	int		size_l;
 	int		endian;
+	int		x;
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -78,6 +80,13 @@ typedef struct s_data
 	t_img		*wallwe;
 	t_img		*floor;
 	t_img		*celling;
+
+	int			no;
+	int			so;
+	int			ea;
+	int			we;
+
+
 	int			forward;
 	int			backward;
 	int			strafeleft;
@@ -92,10 +101,15 @@ typedef struct s_data
 }	t_data;
 
 int		main(int argc, char **argv);
-int		init_data(t_data *data);
+void		init_data(t_data *data);
 int		parse_map(char **map, t_data *data);
 int		closer(t_data *data);
 char	**get_map(char *filename);
 int		raycasting(t_data *data);
+void	steps_side_dist(t_data *data);
+void	move_forward_backward(t_data *data);
+void	strafe_right_left(t_data *data);
+void	rotate_right(t_data *data);
+void	rotate_left(t_data *data);
 
 #endif

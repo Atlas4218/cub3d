@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/21 17:20:50 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/27 17:32:01 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 void	draw_start_end(t_data *data)
 {
 	if (data->ray.side == 0)
-		data->ray.perpwalldist = data->ray.sidedistx - data->ray.deltadistx;
+		data->ray.perpwalldist = ((double)data->ray.mapx - data->ray.posx + (1 - (double)data->ray.stepx) / 2) / data->ray.raydirx;
 	else
-		data->ray.perpwalldist = data->ray.sidedisty - data->ray.deltadisty;
-	data->ray.lineheight = (data->screen_height / data->ray.perpwalldist);
+		data->ray.perpwalldist = ((double)data->ray.mapy - data->ray.posy + (1 - (double)data->ray.stepy) / 2) / data->ray.raydiry;
+	data->ray.lineheight = (int)(data->screen_height / data->ray.perpwalldist);
 	data->ray.drawstart = -data->ray.lineheight / 2 + data->screen_height / 2;
 	if (data->ray.drawstart < 0)
 		data->ray.drawstart = 0;
@@ -49,8 +49,8 @@ void	increment_steps(t_data *data)
 			data->ray.mapy += data->ray.stepy;
 			data->ray.side = 1;
 		}
-		if (data->map[data->ray.mapx][data->ray.mapy] == 1)
-			data->ray.hit == 1;
+		if (data->map[data->ray.mapx][data->ray.mapy] == '1')
+			data->ray.hit = 1;
 	}
 	draw_start_end(data);
 }
