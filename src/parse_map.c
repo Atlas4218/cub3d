@@ -6,17 +6,11 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/21 19:21:51 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/27 17:06:34 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
-int	check_wall(char **map)
-{
-	return (0);
-}
-
 
 /* corriger la carte, remplir de mur pour avoir une carte rectangulaire
    puis parsing
@@ -64,17 +58,4 @@ int	fill_map(char **map)
 		i++;
 	}
 	return (1);
-}
-
-
-/* premiere et derniere lignes, uniquement des 1 ou des espaces
-   sinon 1 ou espace obligatoire autour d'un espace ou fin de ligne */
-
-int	parse_map(char **map, t_data *data)
-{
-	if (!data || !map || !*map)
-		return (6);
-	if (check_wall(data->map))
-		return (closer(data));
-	return (0);
 }

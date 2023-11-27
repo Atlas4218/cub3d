@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/27 15:20:09 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/27 16:53:09 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,18 @@ int	parse_map(char	**map, t_data *data)
 	int	i;
 
 	i = 0;
+	if (!fill_map(map))
+		return (1);
 	if (parse_first_last_line(map[i++]))
-		return (0);
+		return (1);
 	while (map[i])
 	{
 		if (parse_room(map[i], i, data))
-			return (0);
+			return (1);
 	}
 	if (parse_first_last_line(map[i]))
-		return (0);
+		return (1);
+	return (0);
 }
 
 int	parse_file(char **file, t_data *data)

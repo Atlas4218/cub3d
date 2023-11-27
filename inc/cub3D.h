@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 18:11:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:52:50 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_data
 int		main(int argc, char **argv);
 int		init_data(t_data *data);
 int		parse_map(char **map, t_data *data);
+int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
 

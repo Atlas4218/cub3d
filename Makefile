@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/11/10 12:14:23 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/11/27 16:55:31 by rastie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ CC 				= gcc
 SRC 			= get_map.c \
 				init.c \
 				parse_map.c \
+				parse_file.c \
 				main.c \
 				
 RM 				= rm -rf
