@@ -43,31 +43,62 @@ void	**list_to_array(t_list *lst)
 	return (result);
 }
 
+int	get_fd(char *filename)
+{
+	int	file;
+	char	*ext;
+
+	if (!filename)
+		return (-1);
+	ext = ft_strrchr(filename, '.');
+	if (strcmp(ext, ".cub"))
+	{
+		errno = 22;
+		return (perror("Wrong type of file\n"), -1);
+	}
+	if (open(filename, O_DIRECTORY) >= 0)
+		return (perror("Argument is a directory\n"), -1);
+	file = open (filename, O_RDONLY);
+	if (file < 0)
+		perror("Couldn't open file\n");
+	return (file);
+}
+
+void	del_last(t_list *list)
+{
+	if (!list)
+		return ;
+	while (list->next && list->next->next)
+		list = list->next;
+	ft_lstdelone(list->next, &free);
+	if (!list->next)
+		ft_lstdelone(list, &free);
+	list->next = NULL;
+}
 
 char	**get_map(char *filename)
 {
 	int		file;
 	t_list	*result;
 	char	*line;
+	t_list	*last;
 
-	if (!filename)
-		return (NULL);
-	if (strcmp(ft_strrchr(filename, '.'), ".cub"))
-	{
-		errno = 22;
-		return (perror("Wrong type of file"), NULL);
-	}
-	file = open (filename, O_RDONLY);
+	file = get_fd(filename);
 	if (file < 0)
-		return (perror("Couldn't open file"), NULL);
+		return (NULL);
 	result = NULL;
-	line = (char *)1;
-	while (line)
+	line = get_next_line(file);
+	ft_lstadd_back(&result, ft_lstnew(ft_strtrim(line, "\n")));
+	last = ft_lstlast(result);
+	free(line);
+	while (line && last->content && *last->content)
 	{
 		line = get_next_line(file);
 		ft_lstadd_back(&result, ft_lstnew(ft_strtrim(line, "\n")));
+		last = ft_lstlast(result);
 		free(line);
 	}
-	close (file);
-	return ((char **)list_to_array(result));
+	if (!*last->content)
+		del_last(result);
+	return (free(line), close(file), (char **)list_to_array(result));
 }

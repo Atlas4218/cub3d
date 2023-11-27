@@ -28,6 +28,8 @@ int	get_len_max(char **max)
 	lenmax = 2;
 	while (*map)
 	{
+		if (!ft_strlen(*map))
+			return (perror("Empty line in map\n"), 0)
 		if (ft_strlen(*map) > lenmax)
 			lenmax = ft_strlen(*map);
 		map++;
@@ -43,6 +45,8 @@ int	fill_map(char **map)
 	char	*fill;
 	
 	lenmax = get_len_max(map);
+	if (lenmax && lenmax < 3)
+		return (0);	//error map trop petite
 	i = 0;
 	while (map[i])
 	{
@@ -52,17 +56,19 @@ int	fill_map(char **map)
 			fill = malloc(lenmax - ft_strlen(map[i]));
 			if (!fill)
 				return (0);	//error malloc;
-			ft_memset(fill, '1', lenmax - ft_strlen(map[i]));
+			ft_memset(fill, 32, lenmax - ft_strlen(map[i]));
 			map[i] = ft_strjoin(temp, fill);
 			free(temp);
 			free(fill);
 		}
 		i++;
 	}
-	if (lenmax < 3 || i < 3)
-		return (0);	//error map trop petite
 	return (1);
 }
+
+
+/* premiere et derniere lignes, uniquement des 1 ou des espaces
+   sinon 1 ou espace obligatoire autour d'un espace ou fin de ligne */
 
 int	parse_map(char **map, t_data *data)
 {
