@@ -6,37 +6,50 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/25 18:49:55 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/27 15:20:09 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	has_space_nearby(char *line, int i)
+int	is_void(char c)
 {
-
+	return (!c || c == ' ');
 }
 
-int	parse_room(char *line, t_data *data)
+int	has_space_nearby(char **map, int i, int j)
 {
-	int	i;
-	
-	i = 0;
-	while (line[i])
+	return (is_void(map[i][j + 1])
+		|| is_void(map[i][j - 1])
+		|| is_void(map[i + 1][j])
+		|| is_void(map[i + 1][j + 1])
+		|| is_void(map[i + 1][j - 1])
+		|| is_void(map[i - 1][j])
+		|| is_void(map[i - 1][j + 1])
+		|| is_void(map[i - 1][j + 1]));
+}
+
+int	parse_room(char **map, int i, t_data *data)
+{
+	int	j;
+	char	*line;
+
+	line = map[i];
+	j = 0;
+	while (line[j])
 	{
-		if (!is_valid(line[i]))
+		if (!is_valid(line[j]))
 			return (1);
-		if (is_player(line[i]))
+		if (is_player(line[j]))
 		{
 			if (data->nbplayer)
 				return (1);
-			vars->player->angle = get_angle(line[i]);
+			vars->player->angle = get_angle(line[j]);
 			vars->nbplayer++;
 		}
-		if (has_space_nearby(line, i) 
-			&& !is_void(line[i]) && line[i] != '1')
+		if (has_space_nearby(map, i, j) 
+			&& !is_void(line[j]) && line[j] != '1')
 			return (1);
-		i++;
+		j++;
 	}
 	return (0);
 }
@@ -54,15 +67,17 @@ int	parse_first_last_line(char *line)
 
 int	parse_map(char	**map, t_data *data)
 {
-	if (parse_first_last_line(*map))
+	int	i;
+
+	i = 0;
+	if (parse_first_last_line(map[i++]))
 		return (0);
-	while (map + 1)
+	while (map[i])
 	{
-		if (parse_room(*map))
+		if (parse_room(map[i], i, data))
 			return (0);
-		map++;
 	}
-	if (parse_first_last_line(*map))
+	if (parse_first_last_line(map[i]))
 		return (0);
 }
 

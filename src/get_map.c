@@ -64,41 +64,22 @@ int	get_fd(char *filename)
 	return (file);
 }
 
-void	del_last(t_list *list)
-{
-	if (!list)
-		return ;
-	while (list->next && list->next->next)
-		list = list->next;
-	ft_lstdelone(list->next, &free);
-	if (!list->next)
-		ft_lstdelone(list, &free);
-	list->next = NULL;
-}
-
 char	**get_map(char *filename)
 {
 	int		file;
 	t_list	*result;
 	char	*line;
-	t_list	*last;
 
 	file = get_fd(filename);
 	if (file < 0)
 		return (NULL);
 	result = NULL;
-	line = get_next_line(file);
-	ft_lstadd_back(&result, ft_lstnew(ft_strtrim(line, "\n")));
-	last = ft_lstlast(result);
-	free(line);
-	while (line && last->content && *last->content)
+	line = (char *)1;
+	while (line)
 	{
 		line = get_next_line(file);
 		ft_lstadd_back(&result, ft_lstnew(ft_strtrim(line, "\n")));
-		last = ft_lstlast(result);
 		free(line);
 	}
-	if (!*last->content)
-		del_last(result);
-	return (free(line), close(file), (char **)list_to_array(result));
+	return (close(file), (char **)list_to_array(result));
 }
