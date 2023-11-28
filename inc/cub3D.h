@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 16:52:50 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/27 18:04:48 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_data
 	t_img		*wallea;
 	t_img		*wallwe;
 	t_img		*floor;
-	t_img		*celling;
+	t_img		*ceiling;
 	int			forward;
 	int			backward;
 	int			strafeleft;

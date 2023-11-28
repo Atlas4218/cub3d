@@ -6,12 +6,12 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 16:52:44 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/27 18:05:24 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
+/*
 int	init_player(t_data *data)
 {
 	data->player = malloc(sizeof(t_vector));
@@ -25,7 +25,7 @@ int	init_player(t_data *data)
 	data->player->planey = 0.66;
 	data->player->time = 0;
 	data->player->oldtime = 0;
-}
+}*/
 
 int	init_map(t_data *data)
 {
@@ -77,10 +77,10 @@ int	init_data(t_data *data)
 			"asset/img/floor.xpm", &(data->x), &data->y);
 	if (!data->floor)
 		return (closer(data));
-	data->celling = mlx_xpm_file_to_image(data->celling,
+	data->ceiling = mlx_xpm_file_to_image(data->ceiling,
 			"asset/img/celling.xpm", &(data->x), &data->y);
-	mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
-	if (!data->swidth || !data->sheight)
-		return (closer(data));
+	//mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
+	//if (!data->swidth || !data->sheight)
+	//	return (closer(data));
 	return (init_win(data));
 }
