@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 12:01:21 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:10:31 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	init_ray(t_data *data)
 	data->ray.diry = 0;
 	data->ray.planex = 0;
 	data->ray.planey = 0.66;
+	return (0);
 }
 
 int	init_map(t_data *data)
@@ -68,12 +69,12 @@ int	init_data(t_data *data)
 	if (!data->mlx)
 		return (closer(data));
 	init_wall(data);
-	data->floor = mlx_xpm_file_to_image(data->mlx,
-			"asset/img/floor.xpm", &(data->x), &data->y);
-	if (!data->floor)
-		return (closer(data));
-	data->ceiling = mlx_xpm_file_to_image(data->ceiling,
-			"asset/img/celling.xpm", &(data->x), &data->y);
+	// data->floor = mlx_xpm_file_to_image(data->mlx,
+	// 		"asset/img/floor.xpm", &(data->x), &data->y);
+	// if (!data->floor)
+	// 	return (closer(data));
+	// data->ceiling = mlx_xpm_file_to_image(data->ceiling,
+	// 		"asset/img/celling.xpm", &(data->x), &data->y);
 	//mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
 	//if (!data->swidth || !data->sheight)
 	//	return (closer(data));
