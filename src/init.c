@@ -6,25 +6,20 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 16:52:44 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:38:26 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int	init_player(t_data *data)
+int	init_ray(t_data *data)
 {
-	data->player = malloc(sizeof(t_vector));
-	if (!data->player)
-		return (closer(data));
-	data->player->posx = 22;
-	data->player->posy = 12;
-	data->player->dirx = -1;
-	data->player->diry = 0;
-	data->player->planex = 0;
-	data->player->planey = 0.66;
-	data->player->time = 0;
-	data->player->oldtime = 0;
+	data->ray.posx = 3;
+	data->ray.posy = 3;
+	data->ray.dirx = -1;
+	data->ray.diry = 0;
+	data->ray.planex = 0;
+	data->ray.planey = 0.66;
 }
 
 int	init_map(t_data *data)
@@ -77,10 +72,11 @@ int	init_data(t_data *data)
 			"asset/img/floor.xpm", &(data->x), &data->y);
 	if (!data->floor)
 		return (closer(data));
-	data->celling = mlx_xpm_file_to_image(data->celling,
-			"asset/img/celling.xpm", &(data->x), &data->y);
-	mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
-	if (!data->swidth || !data->sheight)
+	data->ceiling = mlx_xpm_file_to_image(data->ceiling,
+			"asset/img/ceiling.xpm", &(data->x), &data->y);
+	mlx_get_screen_size(data->mlx, &(data->screen_width),
+		&(data->screen_height));
+	if (!data->screen_width || !data->screen_height)
 		return (closer(data));
 	return (init_win(data));
 }

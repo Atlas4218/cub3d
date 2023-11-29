@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 17:06:34 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:39:30 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /* corriger la carte, remplir de mur pour avoir une carte rectangulaire
    puis parsing
    */
-int	get_len_max(char **max)
+int	get_len_max(char **map)
 {
 	int	lenmax;
 
@@ -23,7 +23,7 @@ int	get_len_max(char **max)
 	while (*map)
 	{
 		if (!ft_strlen(*map))
-			return (perror("Empty line in map\n"), 0)
+			return (perror("Empty line in map\n"), 0);
 		if (ft_strlen(*map) > lenmax)
 			lenmax = ft_strlen(*map);
 		map++;
@@ -33,11 +33,11 @@ int	get_len_max(char **max)
 
 int	fill_map(char **map)
 {
-	int	lenmax;
-	int	i;
+	int		lenmax;
+	int		i;
 	char	*temp;
 	char	*fill;
-	
+
 	lenmax = get_len_max(map);
 	if (lenmax && lenmax < 3)
 		return (0);	//error map trop petite

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:01:52 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/10 12:20:50 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:38:16 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	**list_to_array(t_list *lst)
 
 int	get_fd(char *filename)
 {
-	int	file;
+	int		file;
 	char	*ext;
 
 	if (!filename)

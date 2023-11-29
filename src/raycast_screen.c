@@ -6,19 +6,24 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/14 18:25:42 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:41:24 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
+/*
+*	Empeche l'effet de FishEye et calcul la distance d'affichage et donc la taille visible des murs
+*/
 void	draw_start_end(t_data *data)
 {
 	if (data->ray.side == 0)
-		data->ray.perpwalldist = data->ray.sidedistx - data->ray.deltadistx;
+		data->ray.perpwalldist = ((double)data->ray.mapx - data->ray.posx
+				+ (1 - (double)data->ray.stepx) / 2) / data->ray.raydirx;
 	else
-		data->ray.perpwalldist = data->ray.sidedisty - data->ray.deltadisty;
-	data->ray.lineheight = (data->screen_height / data->ray.perpwalldist);
+		data->ray.perpwalldist = ((double)data->ray.mapy - data->ray.posy
+				+ (1 - (double)data->ray.stepy) / 2) / data->ray.raydiry;
+	data->ray.lineheight = (int)(data->screen_height / data->ray.perpwalldist);
 	data->ray.drawstart = -data->ray.lineheight / 2 + data->screen_height / 2;
 	if (data->ray.drawstart < 0)
 		data->ray.drawstart = 0;
@@ -27,6 +32,9 @@ void	draw_start_end(t_data *data)
 		data->ray.drawend = data->screen_height - 1;
 }
 
+/*
+*	Calcule la distance total qui separe le joueur d'un mur et quel cote du mur est touche par son regard
+*/
 void	increment_steps(t_data *data)
 {
 	while (data->ray.hit == 0)
@@ -43,12 +51,15 @@ void	increment_steps(t_data *data)
 			data->ray.mapy += data->ray.stepy;
 			data->ray.side = 1;
 		}
-		if (data->map[data->ray.mapx][data->ray.mapy] == 1)
-			data->ray.hit == 1;
+		if (data->map[data->ray.mapx][data->ray.mapy] == '1')
+			data->ray.hit = 1;
 	}
 	draw_start_end(data);
 }
 
+/*
+*	Calcule la direction du joueur et la distance qui le separe du prochain carre de map
+*/
 void	steps_side_dist(t_data *data)
 {
 	if (data->ray.raydirx < 0)

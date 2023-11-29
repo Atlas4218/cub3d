@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 16:52:50 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 11:37:08 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_xpm
 
 typedef struct s_vector
 {
+	int		*data_addr;
 	int		mapx;
 	int		mapy;
 	int		stepx;
@@ -40,8 +41,13 @@ typedef struct s_vector
 	int		side;
 	int		perpwalldist;
 	int		lineheight;
+	int		line_length;
 	int		drawstart;
 	int		drawend;	
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int		x;
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -57,6 +63,9 @@ typedef struct s_vector
 	double	sidedisty;
 	double	deltadistx;
 	double	deltadisty;
+	void	*ray_ptr;
+
+	int		angle;
 
 }	t_vector;
 
@@ -72,7 +81,14 @@ typedef struct s_data
 	t_img		*wallea;
 	t_img		*wallwe;
 	t_img		*floor;
-	t_img		*celling;
+	t_img		*ceiling;
+
+	int			no;
+	int			so;
+	int			ea;
+	int			we;
+	int			nbplayer;
+
 	int			forward;
 	int			backward;
 	int			strafeleft;
@@ -92,5 +108,11 @@ int		parse_map(char **map, t_data *data);
 int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
+int		raycasting(t_data *data);
+void	steps_side_dist(t_data *data);
+void	move_forward_backward(t_data *data);
+void	strafe_right_left(t_data *data);
+void	rotate_right(t_data *data);
+void	rotate_left(t_data *data);
 
 #endif
