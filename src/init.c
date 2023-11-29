@@ -6,18 +6,18 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 12:01:21 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:55:27 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int	init_ray(t_data *data)
+int	init_player(t_data *data, int x, int y, char c)
 {
-	data->ray.posx = 3;
-	data->ray.posy = 3;
-	data->ray.dirx = -1;
-	data->ray.diry = 0;
+	data->ray.angle = get_angle(c);
+	data->ray.posx = x;
+	data->ray.posy = y;
+	get_vector_dir(data->ray.angle, data->ray.dirx, data->ray.diry);
 	data->ray.planex = 0;
 	data->ray.planey = 0.66;
 }
@@ -64,6 +64,7 @@ int	init_data(t_data *data)
 {
 	if (!data)
 		return (closer(data));
+	ft_bzero(data, sizeof (*data));
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (closer(data));

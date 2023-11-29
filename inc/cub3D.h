@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:56:01 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 17:09:12 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_vector
 	int		size_l;
 	int		endian;
 	int		x;
+	int		angle;
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -87,7 +88,7 @@ typedef struct s_data
 	int			so;
 	int			ea;
 	int			we;
-
+	int			nbplayer;
 	int			forward;
 	int			backward;
 	int			strafeleft;
@@ -103,10 +104,13 @@ typedef struct s_data
 
 int		main(int argc, char **argv);
 int		init_data(t_data *data);
+int	init_player(t_data *data, int x, int y, char c);
 int		parse_map(char **map, t_data *data);
 int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
+int	get_angle(char c);
+void	get_vector_dir(int angle, double &x, double &y);
 int		raycasting(t_data *data);
 void	steps_side_dist(t_data *data);
 void	move_forward_backward(t_data *data);

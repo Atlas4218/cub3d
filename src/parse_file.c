@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/29 14:14:13 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 17:08:50 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,23 @@ int	parse_room(char **map, int i, t_data *data)
 	int		j;
 	char	*line;
 
-	(void)data;
 	line = map[i];
 	j = 0;
 	while (line[j])
 	{
-		if (!j && (line[j] != '1' || line[j] != ' ')
+		if (!j && (line[j] != '1' && line[j] != ' '))
 				return (1);
-		/*if (line[j] == 'N' || line[j] == 'E'
+		if (line[j] == 'N' || line[j] == 'E'
 			|| line[i] == 'W' || line[i] == 'S')
 		{
 			if (data->nbplayer)
 				return (1);
-			vars->player->angle = get_angle(line[j]);
+			init_player(data, j, i, line[j]);
 			vars->nbplayer++;
-		}*/
-		if (line[j] != ' ' && line[i] != '1' && line[i] != '0'
-			|| line[j] == 'N' || line[j] == 'E'
-			|| line[i] == 'W' || line[i] == 'S')
+		}
+		else if (line[j] != ' ' && line[i] != '1' && line[i] != '0')
 			return (1);
-		if (has_space_nearby(map, i, j) 
+		if (j && has_space_nearby(map, i, j) 
 			&& !is_void(line[j]) && line[j] != '1')
 			return (1);
 		j++;
@@ -93,10 +90,11 @@ int	parse_map(char	**map, t_data *data)
 		return (1);
 	if (parse_first_last_line(map[i++]))
 		return (1);
-	while (map[i])
+	while (map[i + 1])
 	{
 		if (parse_room(map, i, data))
 			return (1);
+		i++;
 	}
 	if (parse_first_last_line(map[i]))
 		return (1);

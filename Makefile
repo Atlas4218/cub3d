@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/11/29 11:38:00 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/11/29 17:08:42 by rastie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC 			= get_map.c \
 				raycast_screen.c \
 				raycasting.c \
 				main.c \
-				
+				utils.c \
+
 RM 				= rm -rf
 LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
