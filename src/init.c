@@ -6,18 +6,18 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 16:55:27 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 18:18:13 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int	init_player(t_data *data, int x, int y, char c)
+void	init_player(t_data *data, int x, int y, char c)
 {
 	data->ray.angle = get_angle(c);
 	data->ray.posx = x;
 	data->ray.posy = y;
-	get_vector_dir(data->ray.angle, data->ray.dirx, data->ray.diry);
+	get_vector_dir(data->ray.angle, &(data->ray.dirx), &(data->ray.diry));
 	data->ray.planex = 0;
 	data->ray.planey = 0.66;
 }
@@ -68,7 +68,7 @@ int	init_data(t_data *data)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		return (closer(data));
-	init_wall(data);
+//	init_wall(data);
 	data->floor = mlx_xpm_file_to_image(data->mlx,
 			"asset/img/floor.xpm", &(data->x), &data->y);
 	if (!data->floor)

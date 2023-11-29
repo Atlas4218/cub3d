@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/29 17:08:50 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 18:15:15 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	parse_room(char **map, int i, t_data *data)
 			if (data->nbplayer)
 				return (1);
 			init_player(data, j, i, line[j]);
-			vars->nbplayer++;
+			data->nbplayer++;
 		}
 		else if (line[j] != ' ' && line[i] != '1' && line[i] != '0')
 			return (1);
