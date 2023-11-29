@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:01:52 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/10 12:20:50 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:38:16 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,26 @@ void	**list_to_array(t_list *lst)
 	return (result);
 }
 
+int	get_fd(char *filename)
+{
+	int		file;
+	char	*ext;
+
+	if (!filename)
+		return (-1);
+	ext = ft_strrchr(filename, '.');
+	if (strcmp(ext, ".cub"))
+	{
+		errno = 22;
+		return (perror("Wrong type of file\n"), -1);
+	}
+	if (open(filename, O_DIRECTORY) >= 0)
+		return (perror("Argument is a directory\n"), -1);
+	file = open (filename, O_RDONLY, O_NOFOLLOW);
+	if (file < 0)
+		perror("Couldn't open file\n");
+	return (file);
+}
 
 char	**get_map(char *filename)
 {
@@ -50,16 +70,9 @@ char	**get_map(char *filename)
 	t_list	*result;
 	char	*line;
 
-	if (!filename)
-		return (NULL);
-	if (strcmp(ft_strrchr(filename, '.'), ".cub"))
-	{
-		errno = 22;
-		return (perror("Wrong type of file"), NULL);
-	}
-	file = open (filename, O_RDONLY);
+	file = get_fd(filename);
 	if (file < 0)
-		return (perror("Couldn't open file"), NULL);
+		return (NULL);
 	result = NULL;
 	line = (char *)1;
 	while (line)
@@ -68,6 +81,5 @@ char	**get_map(char *filename)
 		ft_lstadd_back(&result, ft_lstnew(ft_strtrim(line, "\n")));
 		free(line);
 	}
-	close (file);
-	return ((char **)list_to_array(result));
+	return (close(file), (char **)list_to_array(result));
 }

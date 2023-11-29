@@ -6,7 +6,11 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/11/27 17:39:26 by gbonnard         ###   ########.fr       */
+=======
+/*   Updated: 2023/11/29 11:56:01 by gbonnard         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +68,11 @@ typedef struct s_vector
 	double	deltadistx;
 	double	deltadisty;
 	void	*ray_ptr;
+<<<<<<< HEAD
+=======
+
+	int		angle;
+>>>>>>> main
 
 }	t_vector;
 
@@ -79,14 +88,21 @@ typedef struct s_data
 	t_img		*wallea;
 	t_img		*wallwe;
 	t_img		*floor;
+<<<<<<< HEAD
 	t_img		*celling;
+=======
+	t_img		*ceiling;
+>>>>>>> main
 
 	int			no;
 	int			so;
 	int			ea;
 	int			we;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 	int			forward;
 	int			backward;
 	int			strafeleft;
@@ -103,6 +119,7 @@ typedef struct s_data
 int		main(int argc, char **argv);
 void		init_data(t_data *data);
 int		parse_map(char **map, t_data *data);
+int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
 int		raycasting(t_data *data);

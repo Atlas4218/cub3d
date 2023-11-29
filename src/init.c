@@ -6,25 +6,21 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/21 16:31:20 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:48:35 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int	init_player(t_data *data)
+int	init_ray(t_data *data)
 {
-	data.ray = malloc(sizeof(t_vector));
-	if (!data->ray)
-		return (closer(data));
-	data->ray->posx = 22;
-	data->ray->posy = 12;
-	data->ray->dirx = -1;
-	data->ray->diry = 0;
-	data->ray->planex = 0;
-	data->ray->planey = 0.66;
-	data->ray->time = 0;
-	data->ray->oldtime = 0;
+	data->ray.posx = 3;
+	data->ray.posy = 3;
+	data->ray.dirx = -1;
+	data->ray.diry = 0;
+	data->ray.planex = 0;
+	data->ray.planey = 0.66;
+	return (0);
 }
 
 int	init_map(t_data *data)
@@ -73,15 +69,14 @@ int	init_data(t_data *data)
 	if (!data->mlx_ptr)
 		return (closer(data));
 	init_wall(data);
-	data->floor = mlx_xpm_file_to_image(data->mlx_ptr,
-			"asset/img/floor.xpm", &(data->x), &data->y);
-	if (!data->floor)
-		return (closer(data));
-	data->celling = mlx_xpm_file_to_image(data->celling,
-			"asset/img/celling.xpm", &(data->x), &data->y);
-	mlx_get_screen_size(data->mlx_ptr, &(data->screen_width),
-		&(data->screen_height));
-	if (!data->screen_width || !data->screen_height)
-		return (closer(data));
+	// data->floor = mlx_xpm_file_to_image(data->mlx,
+	// 		"asset/img/floor.xpm", &(data->x), &data->y);
+	// if (!data->floor)
+	// 	return (closer(data));
+	// data->ceiling = mlx_xpm_file_to_image(data->ceiling,
+	// 		"asset/img/celling.xpm", &(data->x), &data->y);
+	//mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
+	//if (!data->swidth || !data->sheight)
+	//	return (closer(data));
 	return (init_win(data));
 }

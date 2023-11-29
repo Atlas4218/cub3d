@@ -6,19 +6,21 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/11/23 14:30:32 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/11/29 13:47:54 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= cub3D
 CC 				= gcc
-SRC 			= main.c \
+SRC 			= get_map.c \
+				init.c \
+				parse_map.c \
+				parse_file.c \
 				raycast_move.c \
 				raycast_screen.c \
 				raycasting.c \
+				main.c \
 				
-				
-
 RM 				= rm -rf
 LIBFT_PATH		=	./libft
 LIBFT			=	$(LIBFT_PATH)/libft.a
@@ -40,9 +42,9 @@ lib :
 	$(CC) $(FLAGS) -I/usr/include -Iminilibx-linux -O3 -c $< -o $(<:.c=.o) 
 
 
-
-$(NAME):		$(LIBFT) $(MINILIBX) $(OBJ) $(HEADER) 
+$(NAME):		$(LIBFT) $(MINILIBX) $(OBJ) $(HEADER)
 				$(CC) $(OBJ) $(MLX) $(LIBFT) $(MINILIBX) -o $(NAME) 
+
 				
 $(LIBFT):
 				$(MAKE) -C $(LIBFT_PATH)

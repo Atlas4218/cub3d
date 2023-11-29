@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/27 17:48:32 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:47:35 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,16 @@ void	deltadist_init(t_data *data)
 
 void	draw_walls(t_data *data, int x, int y)
 {
-	int	color;
-	char cell_value = data->map[x][y];
+	int		color;
+	char	cell_value;
 
+	cell_value = data->map[x][y];
 	if (cell_value == '1')
 		color = 0xFFFFFF;
 	y = data->ray.drawstart - 1;
 	while (y <= data->ray.drawend)
 	{
-		mlx_pixel_put(data->mlx_ptr, data->mlx_win, x, y, color);
+		mlx_pixel_put(data->mlx, data->mlx_win, x, y, color);
 		y++;
 	}
 }
@@ -58,7 +59,7 @@ void	draw_column(t_data *data)
 	while (y < data->ray.drawstart)
 		y++;
 	if (y <= data->ray.drawend)
-			draw_walls(data, data->ray.x, y);
+		draw_walls(data, data->ray.x, y);
 	return ;
 }
 
@@ -74,7 +75,7 @@ int	raycasting(t_data *data)
 		data->ray.raydirx = data->ray.dirx
 			+ data->ray.planex *  data->ray.camerax;
 		data->ray.raydiry = data->ray.diry
-			+ data->ray.planey *  data->ray.camerax;
+			+ data->ray.planey * data->ray.camerax;
 		data->ray.perpwalldist = 0;
 		data->ray.hit = 0;
 		data->ray.movespeed = 0.1;
