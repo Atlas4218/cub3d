@@ -6,12 +6,11 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/29 11:38:34 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:54:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
-
 int	is_void(char c)
 {
 	return (!c || c == ' ');
@@ -34,20 +33,22 @@ int	parse_room(char **map, int i, t_data *data)
 	int		j;
 	char	*line;
 
+	(void)data;
 	line = map[i];
 	j = 0;
 	while (line[j])
 	{
-		if (!is_valid(line[j]))
+		if (line[j] != ' ' && line[i] != '1' && line[i] != '0')
 			return (1);
-		if (is_player(line[j]))
+		/*if (line[j] == 'N' || line[j] == 'E'
+			|| line[i] == 'W' || line[i] == 'S')
 		{
 			if (data->nbplayer)
 				return (1);
-			data->ray.angle = get_angle(line[j]);
-			data->nbplayer++;
-		}
-		if (has_space_nearby(map, i, j)
+			vars->player->angle = get_angle(line[j]);
+			vars->nbplayer++;
+		}*/
+		if (has_space_nearby(map, i, j) 
 			&& !is_void(line[j]) && line[j] != '1')
 			return (1);
 		j++;
@@ -66,6 +67,19 @@ int	parse_first_last_line(char *line)
 	return (0);
 }
 
+void	*get_img(char *filename, t_data *data)
+{
+	char	*ext;
+
+	ext = ft_strrchr(filename, '.');
+	if (!ext)
+		return (NULL);
+	while (*filename == ' ')
+		filename++;
+	if (ft_strncmp(ext, ".xpm", 5))
+		return (NULL);
+	return (mlx_xpm_file_to_image(data->mlx, filename, &(data->x), &data->y));
+}
 int	parse_map(char	**map, t_data *data)
 {
 	int	i;
@@ -77,7 +91,7 @@ int	parse_map(char	**map, t_data *data)
 		return (1);
 	while (map[i])
 	{
-		if (parse_room(map[i], i, data))
+		if (parse_room(map, i, data))
 			return (1);
 	}
 	if (parse_first_last_line(map[i]))
@@ -93,17 +107,17 @@ int	parse_file(char **file, t_data *data)
 			|| !data->floor || !data->ceiling) && *file)
 	{
 		if (!ft_strncmp(*file, "N", 2))
-			data->wallno = get_img((*file) + 1);
+			data->wallno = get_img((*file) + 1, data);
 		if (!ft_strncmp(*file, "S", 2))
-			data->wallso = get_img((*file) + 1);
+			data->wallso = get_img((*file) + 1, data);
 		if (!ft_strncmp(*file, "EA", 3))
-			data->wallea = get_img((*file) + 2);
+			data->wallea = get_img((*file) + 2, data);
 		if (!ft_strncmp(*file, "WE", 3))
-			data->wallwe = get_img((*file) + 2);
+			data->wallwe = get_img((*file) + 2, data);
 		if (!ft_strncmp(*file, "F", 2))
-			data->floor = get_img((*file) + 1);
+			data->floor = get_img((*file) + 1, data);
 		if (!ft_strncmp(*file, "C", 2))
-			data->ceiling = get_img((*file) + 1);
+			data->ceiling = get_img((*file) + 1, data);
 		file++;
 	}
 	while (*file && !**file)

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:37:08 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:56:01 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ typedef struct s_data
 	int			so;
 	int			ea;
 	int			we;
-	int			nbplayer;
 
 	int			forward;
 	int			backward;

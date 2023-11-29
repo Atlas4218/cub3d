@@ -58,7 +58,7 @@ int	get_fd(char *filename)
 	}
 	if (open(filename, O_DIRECTORY) >= 0)
 		return (perror("Argument is a directory\n"), -1);
-	file = open (filename, O_RDONLY);
+	file = open (filename, O_RDONLY, O_NOFOLLOW);
 	if (file < 0)
 		perror("Couldn't open file\n");
 	return (file);

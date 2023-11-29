@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:38:26 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 12:01:21 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,9 @@ int	init_data(t_data *data)
 	if (!data->floor)
 		return (closer(data));
 	data->ceiling = mlx_xpm_file_to_image(data->ceiling,
-			"asset/img/ceiling.xpm", &(data->x), &data->y);
-	mlx_get_screen_size(data->mlx, &(data->screen_width),
-		&(data->screen_height));
-	if (!data->screen_width || !data->screen_height)
-		return (closer(data));
+			"asset/img/celling.xpm", &(data->x), &data->y);
+	//mlx_get_screen_size(data->mlx, &(data->swidth), &(data->sheight));
+	//if (!data->swidth || !data->sheight)
+	//	return (closer(data));
 	return (init_win(data));
 }

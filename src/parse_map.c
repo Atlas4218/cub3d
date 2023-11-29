@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:39:30 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:57:45 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	get_len_max(char **map)
 	while (*map)
 	{
 		if (!ft_strlen(*map))
-			return (perror("Empty line in map\n"), 0);
-		if (ft_strlen(*map) > lenmax)
+			return (perror("Empty line in map\n"), 0);;
+		if (ft_strlen(*map) > (size_t)lenmax)
 			lenmax = ft_strlen(*map);
 		map++;
 	}
@@ -44,7 +44,7 @@ int	fill_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		if (ft_strlen(map[i]) < lenmax)
+		if (ft_strlen(map[i]) < (size_t)lenmax)
 		{
 			temp = map[i];
 			fill = malloc(lenmax - ft_strlen(map[i]));
