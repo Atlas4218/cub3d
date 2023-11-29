@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/29 11:54:46 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:14:13 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ int	parse_room(char **map, int i, t_data *data)
 	j = 0;
 	while (line[j])
 	{
-		if (line[j] != ' ' && line[i] != '1' && line[i] != '0')
-			return (1);
+		if (!j && (line[j] != '1' || line[j] != ' ')
+				return (1);
 		/*if (line[j] == 'N' || line[j] == 'E'
 			|| line[i] == 'W' || line[i] == 'S')
 		{
@@ -48,6 +48,10 @@ int	parse_room(char **map, int i, t_data *data)
 			vars->player->angle = get_angle(line[j]);
 			vars->nbplayer++;
 		}*/
+		if (line[j] != ' ' && line[i] != '1' && line[i] != '0'
+			|| line[j] == 'N' || line[j] == 'E'
+			|| line[i] == 'W' || line[i] == 'S')
+			return (1);
 		if (has_space_nearby(map, i, j) 
 			&& !is_void(line[j]) && line[j] != '1')
 			return (1);
