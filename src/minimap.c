@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/28 19:07:28 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:18:19 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	draw_line(t_img *img, int x, int y, int angle, int len, int color)
 
 void	draw_map(t_data *data, t_img *img)
 {
-	t_player	*player;
+	t_vector	*player;
 
-	player = data->player;
+	player = data->ray;
 	// recuperation des coos du joueur
-	int	x = player->x;
-	int	y = player->y;
+	int	x = player->posx;
+	int	y = player->posy;
 	int	i = 0;
 	int	j;
 	while (i <= x + 300)
