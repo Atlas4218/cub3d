@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 13:48:35 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:49:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	init_ray(t_data *data)
 {
-	data->ray.posx = 3;
-	data->ray.posy = 3;
-	data->ray.dirx = -1;
-	data->ray.diry = 0;
+	data->ray.posx = 6;
+	data->ray.posy = 6;
+	data->ray.dirx = 0;
+	data->ray.diry = -1;
 	data->ray.planex = 0;
-	data->ray.planey = 0.66;
+	data->ray.planey = 0;
+	data->screen_width = 800;
+	data->screen_height = 600;
 	return (0);
 }
 
@@ -42,19 +44,19 @@ int	init_win(t_data *data)
 
 int	init_wall(t_data *data)
 {
-	data->wallno = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->wallno = mlx_xpm_file_to_image(data->mlx,
 			"asset/img/wallno.xpm", &(data->x), &data->y);
 	if (!data->wallno)
 		return (closer(data));
-	data->wallso = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->wallso = mlx_xpm_file_to_image(data->mlx,
 			"asset/img/wallso.xpm", &(data->x), &data->y);
 	if (!data->wallso)
 		return (closer(data));
-	data->wallea = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->wallea = mlx_xpm_file_to_image(data->mlx,
 			"asset/img/wallea.xpm", &(data->x), &data->y);
 	if (!data->wallea)
 		return (closer(data));
-	data->wallwe = mlx_xpm_file_to_image(data->mlx_ptr,
+	data->wallwe = mlx_xpm_file_to_image(data->mlx,
 			"asset/img/wallwe.xpm", &(data->x), &data->y);
 	if (!data->wallwe)
 		return (closer(data));
@@ -65,8 +67,8 @@ int	init_data(t_data *data)
 {
 	if (!data)
 		return (closer(data));
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
+	data->mlx = mlx_init();
+	if (!data->mlx)
 		return (closer(data));
 	init_wall(data);
 	// data->floor = mlx_xpm_file_to_image(data->mlx,

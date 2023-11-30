@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/29 14:14:13 by rastie           ###   ########.fr       */
+/*   Updated: 2023/11/30 11:56:59 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	parse_room(char **map, int i, t_data *data)
 	j = 0;
 	while (line[j])
 	{
-		if (!j && (line[j] != '1' || line[j] != ' ')
+		if (!j && (line[j] != '1' && line[j] != ' '))
 				return (1);
 		/*if (line[j] == 'N' || line[j] == 'E'
 			|| line[i] == 'W' || line[i] == 'S')
@@ -49,12 +49,15 @@ int	parse_room(char **map, int i, t_data *data)
 			vars->nbplayer++;
 		}*/
 		if (line[j] != ' ' && line[i] != '1' && line[i] != '0'
-			|| line[j] == 'N' || line[j] == 'E'
-			|| line[i] == 'W' || line[i] == 'S')
+			&& line[j] != 'N' && line[j] != 'E'
+			&& line[i] != 'W' && line[i] != 'S')
 			return (1);
-		if (has_space_nearby(map, i, j) 
-			&& !is_void(line[j]) && line[j] != '1')
-			return (1);
+		if (j)
+		{
+			if (has_space_nearby(map, i, j) 
+				&& !is_void(line[j]) && line[j] != '1')
+				return (1);
+		}
 		j++;
 	}
 	return (0);
@@ -93,12 +96,13 @@ int	parse_map(char	**map, t_data *data)
 		return (1);
 	if (parse_first_last_line(map[i++]))
 		return (1);
-	while (map[i])
+	while (map[i + 1])
 	{
 		if (parse_room(map, i, data))
 			return (1);
+		i++;
 	}
-	if (parse_first_last_line(map[i]))
+	if (parse_first_last_line(map[i++]))
 		return (1);
 	return (0);
 }
@@ -108,7 +112,7 @@ int	parse_file(char **file, t_data *data)
 	if (!file || !data)
 		return (0);
 	while ((!data->wallno || !data->wallso || !data->wallea || !data->wallwe
-			|| !data->floor || !data->ceiling) && *file)
+			) && *file)
 	{
 		if (!ft_strncmp(*file, "N", 2))
 			data->wallno = get_img((*file) + 1, data);
@@ -118,10 +122,6 @@ int	parse_file(char **file, t_data *data)
 			data->wallea = get_img((*file) + 2, data);
 		if (!ft_strncmp(*file, "WE", 3))
 			data->wallwe = get_img((*file) + 2, data);
-		if (!ft_strncmp(*file, "F", 2))
-			data->floor = get_img((*file) + 1, data);
-		if (!ft_strncmp(*file, "C", 2))
-			data->ceiling = get_img((*file) + 1, data);
 		file++;
 	}
 	while (*file && !**file)

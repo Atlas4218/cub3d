@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 13:47:35 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:23:33 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,10 @@ void	deltadist_init(t_data *data)
 
 void	draw_walls(t_data *data, int x, int y)
 {
-	int		color;
-	char	cell_value;
+	int	color;
 
-	cell_value = data->map[x][y];
-	if (cell_value == '1')
-		color = 0xFFFFFF;
-	y = data->ray.drawstart - 1;
+	color = 0xFFFFFF;
+
 	while (y <= data->ray.drawend)
 	{
 		mlx_pixel_put(data->mlx, data->mlx_win, x, y, color);
@@ -69,25 +66,29 @@ void	draw_column(t_data *data)
 int	raycasting(t_data *data)
 {
 	data->ray.x = 0;
+	printf("screen width = %d, screen height = %d, drawstart = %d, drawend = %d\n", data->screen_width, data->screen_height, data->ray.drawstart, data->ray.drawend);
+
 	while (data->ray.x < data->screen_width)
 	{
 		data->ray.camerax = 2 * data->ray.x / (double)data->screen_width - 1;
 		data->ray.raydirx = data->ray.dirx
-			+ data->ray.planex *  data->ray.camerax;
+			+ data->ray.planex * data->ray.camerax;
 		data->ray.raydiry = data->ray.diry
 			+ data->ray.planey * data->ray.camerax;
+		data->ray.mapx = (int)data->ray.posx;
+		data->ray.mapy = (int)data->ray.posy;
+		deltadist_init(data);
 		data->ray.perpwalldist = 0;
 		data->ray.hit = 0;
+		steps_side_dist(data);
 		data->ray.movespeed = 0.1;
 		data->ray.rotspeed = 0.033 * 1.8;
-		deltadist_init(data);
-		steps_side_dist(data);
 		draw_column(data);
 		data->ray.x++;
 	}
-	move_forward_backward(data);
-	strafe_right_left(data);
-	rotate_right(data);
-	rotate_left(data);
+	// move_forward_backward(data);
+	// strafe_right_left(data);
+	// rotate_right(data);
+	// rotate_left(data);
 	return (0);
 }

@@ -6,11 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/11/27 17:39:26 by gbonnard         ###   ########.fr       */
-=======
-/*   Updated: 2023/11/29 11:56:01 by gbonnard         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2023/11/30 11:32:40 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +64,8 @@ typedef struct s_vector
 	double	deltadistx;
 	double	deltadisty;
 	void	*ray_ptr;
-<<<<<<< HEAD
-=======
 
 	int		angle;
->>>>>>> main
-
 }	t_vector;
 
 typedef struct s_data
@@ -87,22 +79,14 @@ typedef struct s_data
 	t_img		*wallso;
 	t_img		*wallea;
 	t_img		*wallwe;
-	t_img		*floor;
-<<<<<<< HEAD
-	t_img		*celling;
-=======
-	t_img		*ceiling;
->>>>>>> main
+	int			floor;
+	int			ceiling;
 
 	int			no;
 	int			so;
 	int			ea;
 	int			we;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> main
 	int			forward;
 	int			backward;
 	int			strafeleft;
@@ -111,13 +95,14 @@ typedef struct s_data
 	int			rotateleft;
 	int			screen_width;
 	int			screen_height;
-	void		*mlx_ptr;
+	void		*mlx;
 	void		*mlx_win;
 	t_vector	ray;
 }	t_data;
 
 int		main(int argc, char **argv);
-void		init_data(t_data *data);
+int		init_data(t_data *data);
+int		init_ray(t_data *data);
 int		parse_map(char **map, t_data *data);
 int		fill_map(char **map);
 int		closer(t_data *data);
@@ -128,5 +113,6 @@ void	move_forward_backward(t_data *data);
 void	strafe_right_left(t_data *data);
 void	rotate_right(t_data *data);
 void	rotate_left(t_data *data);
+void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
 
 #endif

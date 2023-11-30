@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 13:46:42 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:49:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	closer(t_data *data)
 {
 	if (data->map)
 		clear_map(data->map);
-	free(data->mlx_ptr);
+	free(data->mlx);
 	exit(0);
 	return (5);
 }
@@ -59,9 +59,11 @@ int	main(int argc, char **argv)
 		errno = 22;
 		return (perror("Erreur"), errno);
 	}
+	ft_bzero (&data, sizeof(data));
 	data.mappath = argv[1];
 	if (init_data(&data))
 		return (closer(&data));
+	init_ray(&data);
 	cub(&data);
 	return (0);
 }
