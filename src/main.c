@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 15:49:46 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:11:54 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	main(int argc, char **argv)
 	data.mappath = argv[1];
 	if (init_data(&data))
 		return (closer(&data));
-	init_ray(&data);
 	cub(&data);
 	return (0);
 }

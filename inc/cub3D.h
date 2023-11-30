@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 15:57:06 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:09:41 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_vector
 	int		stepy;
 	int		hit;
 	int		side;
-	int		perpwalldist;
 	int		lineheight;
 	int		line_length;
 	int		drawstart;
@@ -49,6 +48,7 @@ typedef struct s_vector
 	int		endian;
 	int		x;
 	int		angle;
+	double	perpwalldist;
 	double	posx;
 	double	posy;
 	double	dirx;

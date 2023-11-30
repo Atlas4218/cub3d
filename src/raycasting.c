@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 15:23:33 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:37:52 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	draw_column(t_data *data)
 int	raycasting(t_data *data)
 {
 	data->ray.x = 0;
-	printf("screen width = %d, screen height = %d, drawstart = %d, drawend = %d\n", data->screen_width, data->screen_height, data->ray.drawstart, data->ray.drawend);
 
 	while (data->ray.x < data->screen_width)
 	{

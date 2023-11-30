@@ -6,11 +6,12 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/30 15:57:48 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/11/30 18:29:19 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
 int	is_void(char c)
 {
 	return (!c || c == ' ');
@@ -40,14 +41,14 @@ int	parse_room(char **map, int i, t_data *data)
 		if (!j && (line[j] != '1' && line[j] != ' '))
 				return (1);
 		if (line[j] == 'N' || line[j] == 'E'
-			|| line[i] == 'W' || line[i] == 'S')
+			|| line[j] == 'W' || line[j] == 'S')
 		{
 			if (data->nbplayer)
 				return (1);
 			init_player(data, j, i, line[j]);
 			data->nbplayer++;
 		}
-		else if (line[j] != ' ' && line[i] != '1' && line[i] != '0')
+		else if (line[j] != ' ' && line[j] != '1' && line[j] != '0')
 			return (1);
 		if (j && has_space_nearby(map, i, j) 
 			&& !is_void(line[j]) && line[j] != '1')
