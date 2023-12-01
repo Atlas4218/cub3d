@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:24:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/01 17:10:25 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/01 18:52:31 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	get_angle(char c)
 {
 	if (c == 'E')
 		return (0);
-	if (c == 'N')
+	else if (c == 'N')
 		return (90);
-	if (c == 'W')
+	else if (c == 'W')
 		return (180);
 	return (270);
 }
