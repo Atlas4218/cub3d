@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/11/30 18:29:19 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/01 03:33:32 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,28 @@ int	parse_first_last_line(char *line)
 	return (0);
 }
 
+int	get_color(char *src)
+{
+	char	**colors;
+	int	i;
+
+	while (*src == ' ')
+		src++;
+	colors = ft_simple_split(src, ',');
+	i = 0;
+	while(colors[i])
+	{
+		if (ft_strlen(colors[i]) > 3 || !is_all_digit(colors[i]))
+			return (-1);
+		i++;
+	}
+	if (i != 3)
+		return (-1);
+	return (ft_atoi(colors[0]) << 16 | ft_atoi(colors[1]) << 8 | ft_atoi(colors[2]));
+}
+
+	
+
 void	*get_img(char *filename, t_data *data)
 {
 	char	*ext;
@@ -106,17 +128,36 @@ int	parse_file(char **file, t_data *data)
 {
 	if (!file || !data)
 		return (0);
+	data->floor = -1;
+	data->ceiling = -1;
 	while ((!data->wallno || !data->wallso || !data->wallea || !data->wallwe
-			) && *file)
+		|| data->floor < 0 || data->ceiling < 0
+		) && *file)
 	{
 		if (!ft_strncmp(*file, "N", 2))
+		{
+			if (data->wallno)
+				free(data->wallno);
 			data->wallno = get_img((*file) + 1, data);
+		}
 		if (!ft_strncmp(*file, "S", 2))
+		{
+			if (data->wallso)
+				free(data->wallso);
 			data->wallso = get_img((*file) + 1, data);
+		}
 		if (!ft_strncmp(*file, "EA", 3))
+		{
+			if (data->wallea)
+				free(data->wallea);
 			data->wallea = get_img((*file) + 2, data);
+		}
 		if (!ft_strncmp(*file, "WE", 3))
+		{
+			if (data->wallwe)
+				free(data->wallwe);
 			data->wallwe = get_img((*file) + 2, data);
+		}
 		file++;
 	}
 	while (*file && !**file)

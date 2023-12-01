@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:57:45 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/01 00:48:43 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	get_len_max(char **map)
 	lenmax = 2;
 	while (*map)
 	{
-		if (!ft_strlen(*map))
-			return (perror("Empty line in map\n"), 0);;
 		if (ft_strlen(*map) > (size_t)lenmax)
 			lenmax = ft_strlen(*map);
 		map++;
