@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/01 03:33:32 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/01 17:10:51 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ int	parse_room(char **map, int i, t_data *data)
 	while (line[j])
 	{
 		if (!j && (line[j] != '1' && line[j] != ' '))
-				return (1);
+			return (1);
 		if (line[j] == 'N' || line[j] == 'E'
-			|| line[j] == 'W' || line[j] == 'S')
+				|| line[j] == 'W' || line[j] == 'S')
 		{
-			if (data->nbplayer)
+			if (data->nbplayer++)
 				return (1);
 			init_player(data, j, i, line[j]);
-			data->nbplayer++;
+			line[j] = '0';
 		}
 		else if (line[j] != ' ' && line[j] != '1' && line[j] != '0')
 			return (1);
@@ -69,10 +69,22 @@ int	parse_first_last_line(char *line)
 	return (0);
 }
 
+int	is_all_digit(char *str)
+{
+	while (*str)
+	{
+		if (*str > '9' || *str < '0')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 int	get_color(char *src)
 {
 	char	**colors;
 	int	i;
+	int	color;
 
 	while (*src == ' ')
 		src++;
@@ -81,15 +93,16 @@ int	get_color(char *src)
 	while(colors[i])
 	{
 		if (ft_strlen(colors[i]) > 3 || !is_all_digit(colors[i]))
-			return (-1);
+			return (clear_tab(colors), -1);
 		i++;
 	}
 	if (i != 3)
 		return (-1);
-	return (ft_atoi(colors[0]) << 16 | ft_atoi(colors[1]) << 8 | ft_atoi(colors[2]));
+	color = (ft_atoi(colors[0]) << 16 | ft_atoi(colors[1]) << 8 | ft_atoi(colors[2]));
+	return (clear_tab(colors), color);
 }
 
-	
+
 
 void	*get_img(char *filename, t_data *data)
 {
@@ -124,6 +137,42 @@ int	parse_map(char	**map, t_data *data)
 	return (0);
 }
 
+void	check_colors(t_data *data, char *file)
+{
+	if (!ft_strncmp(*file, "F", 2))
+		data->floor = get_color((*file) + 1, data);
+	if (!ft_strncmp(*file, "C", 2))
+		data->ceiling = get_color((*file) + 1, data);
+}
+
+void	check_element(t_data *data, char *file)
+{
+	if (!ft_strncmp(*file, "N", 2))
+	{
+		if (data->wallno)
+			free(data->wallno);
+		data->wallno = get_img((*file) + 1, data);
+	}
+	if (!ft_strncmp(*file, "S", 2))
+	{
+		if (data->wallso)
+			free(data->wallso);
+		data->wallso = get_img((*file) + 1, data);
+	}
+	if (!ft_strncmp(*file, "EA", 3))
+	{
+		if (data->wallea)
+			free(data->wallea);
+		data->wallea = get_img((*file) + 2, data);
+	}
+	if (!ft_strncmp(*file, "WE", 3))
+	{
+		if (data->wallwe)
+			free(data->wallwe);
+		data->wallwe = get_img((*file) + 2, data);
+	}
+	check_colors(data, file);
+}
 int	parse_file(char **file, t_data *data)
 {
 	if (!file || !data)
@@ -131,33 +180,10 @@ int	parse_file(char **file, t_data *data)
 	data->floor = -1;
 	data->ceiling = -1;
 	while ((!data->wallno || !data->wallso || !data->wallea || !data->wallwe
-		|| data->floor < 0 || data->ceiling < 0
-		) && *file)
+			|| data->floor < 0 || data->ceiling < 0
+			) && *file)
 	{
-		if (!ft_strncmp(*file, "N", 2))
-		{
-			if (data->wallno)
-				free(data->wallno);
-			data->wallno = get_img((*file) + 1, data);
-		}
-		if (!ft_strncmp(*file, "S", 2))
-		{
-			if (data->wallso)
-				free(data->wallso);
-			data->wallso = get_img((*file) + 1, data);
-		}
-		if (!ft_strncmp(*file, "EA", 3))
-		{
-			if (data->wallea)
-				free(data->wallea);
-			data->wallea = get_img((*file) + 2, data);
-		}
-		if (!ft_strncmp(*file, "WE", 3))
-		{
-			if (data->wallwe)
-				free(data->wallwe);
-			data->wallwe = get_img((*file) + 2, data);
-		}
+		check_element(data, *file);
 		file++;
 	}
 	while (*file && !**file)

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 19:09:41 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:02:03 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ typedef struct s_data
 }	t_data;
 
 int		main(int argc, char **argv);
+void	clear_tab(char **tab);
 int		init_data(t_data *data);
 void	init_player(t_data *data, int x, int y, char c);
 int		parse_map(char **map, t_data *data);

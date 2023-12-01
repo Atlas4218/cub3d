@@ -6,26 +6,26 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 19:11:54 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/01 17:10:37 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	clear_map(char **map)
+void	clear_tab(char **tab)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
-		free(map[i++]);
-	free(map);
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
 }
 
 int	closer(t_data *data)
 {
 	if (data->map)
-		clear_map(data->map);
+		clear_tab(data->map);
 	free(data->mlx);
 	exit(0);
 	return (5);
