@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/01 18:34:06 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/02 12:51:34 by roman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_circle(t_img *img, int x, int y, int r, int color)
 	}
 }
 
-void draw_line(int x, int y, int length, int img, int color, double angle)
+void draw_line(int x, int y, int length, int img, int color, int angle)
 {
 	int end_x;
 	int end_y;

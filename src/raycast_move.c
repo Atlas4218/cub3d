@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:31:13 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:42:01 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:51:34 by roman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	strafe_right_left(t_data *data)
 
 void	rotate_right(t_data *data)
 {
-	double	olddirx;
-	double	oldplanex;
+	float	olddirx;
+	float	oldplanex;
 
 	olddirx = data->ray.dirx;
 	oldplanex = data->ray.planex;
@@ -78,8 +78,8 @@ void	rotate_right(t_data *data)
 
 void	rotate_left(t_data *data)
 {
-	double	olddirx;
-	double	oldplanex;
+	float	olddirx;
+	float	oldplanex;
 
 	olddirx = data->ray.dirx;
 	oldplanex = data->ray.planex;
