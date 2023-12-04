@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/01 00:48:43 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/04 19:32:02 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	fill_map(char **map)
 
 	lenmax = get_len_max(map);
 	if (lenmax && lenmax < 3)
-		return (0);	//error map trop petite
+		return (0);
 	i = 0;
 	while (map[i])
 	{
@@ -47,7 +47,7 @@ int	fill_map(char **map)
 			temp = map[i];
 			fill = malloc(lenmax - ft_strlen(map[i]));
 			if (!fill)
-				return (0);	//error malloc;
+				return (perror("fill_map"), 0);
 			ft_memset(fill, 32, lenmax - ft_strlen(map[i]));
 			map[i] = ft_strjoin(temp, fill);
 			free(temp);

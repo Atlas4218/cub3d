@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 11:29:46 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 14:42:16 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ void	init_player(t_data *data, int x, int y, char c)
 	data->screen_height = 600;
 }
 
-int	init_map(t_data *data)
+int	init_file(t_data *data)
 {
-	data->map = get_map(data->mappath);
-	if (!data->map)
+	data->file = get_file(data->mappath);
+	if (!data->file)
 		return (closer(data));
-	if (parse_map(data->map, data))
+	if (parse_file(data->file, data))
 		return (closer(data));
 	return (0);
 }
 
 int	init_win(t_data *data)
 {
-	if (init_map(data))
+	if (init_file(data))
 		return (closer(data));
 	return (0);
 }

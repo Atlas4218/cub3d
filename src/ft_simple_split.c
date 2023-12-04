@@ -9,6 +9,7 @@
 /*   Updated: 2023/12/03 20:21:08 by roman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../inc/cub3D.h"
 
 static char	**calcul_malloc(char const *s, char c)
 {

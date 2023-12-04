@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:01:52 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:38:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:30:21 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	**list_to_array(t_list *lst)
 
 	if (!lst)
 		return (NULL);
-	if (!lst->content || !(*(char *)lst->content))
+	if (!lst->content)
 		return (ft_lstclear(&lst, &free), NULL);
 	temp = malloc((ft_lstsize(lst) + 1) * sizeof(void *));
 	if (!temp)
@@ -64,7 +64,7 @@ int	get_fd(char *filename)
 	return (file);
 }
 
-char	**get_map(char *filename)
+char	**get_file(char *filename)
 {
 	int		file;
 	t_list	*result;
