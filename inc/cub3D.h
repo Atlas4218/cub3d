@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 11:30:02 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:21:34 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,22 @@ typedef struct s_vector
 	int		endian;
 	int		x;
 	int		angle;
-	double	perpwalldist;
-	double	posx;
-	double	posy;
-	double	dirx;
-	double	diry;
-	double	planex;
-	double	planey;
-	double	camerax;
-	double	raydirx;
-	double	raydiry;
-	double	movespeed;
-	double	rotspeed;
-	double	sidedistx;
-	double	sidedisty;
-	double	deltadistx;
-	double	deltadisty;
+	float	perpwalldist;
+	float	posx;
+	float	posy;
+	float	dirx;
+	float	diry;
+	float	planex;
+	float	planey;
+	float	camerax;
+	float	raydirx;
+	float	raydiry;
+	float	movespeed;
+	float	rotspeed;
+	float	sidedistx;
+	float	sidedisty;
+	float	deltadistx;
+	float	deltadisty;
 	void	*ray_ptr;
 
 
@@ -110,7 +110,7 @@ int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
 int	get_angle(char c, t_data *data);
-void	get_vector_dir(int angle, double *x, double *y);
+void	get_vector_dir(int angle, float *x, float *y);
 int		raycasting(t_data *data);
 void	steps_side_dist(t_data *data);
 void	move_forward_backward(t_data *data);

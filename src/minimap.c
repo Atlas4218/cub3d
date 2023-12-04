@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/01 17:10:28 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/02 12:51:34 by roman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_circle(t_img *img, int x, int y, int r, int color)
 {
 	int	i;
 	int	j;
-	
+
 	i = r - x;
 	while (i <= x + r)
 	{
@@ -41,29 +41,28 @@ void	draw_circle(t_img *img, int x, int y, int r, int color)
 	}
 }
 
-void	draw_line(t_img *img, int x, int y, int angle, int len, int color)
+void draw_line(int x, int y, int length, int img, int color, int angle)
 {
-    double slope;
-    int i;
-    int roundedY;
+	int end_x;
+	int end_y;
+	int i;
+	int j;
 
-    if (angle == 90.0)
-    {
-        i = centerY;
-        while (i <= y + len)
-	    my_mlx_pixel_put(i++, x, img, color);
-    }
-    else
-    {
-        slope = tan(angle * M_PI / 180.0);
-        i = x;
-        while (i <= x + len)
-	{
-            roundedY = (int)round(slope * (i - centerX) + centerY);
-	    my_mlx_pixel_put(roundedY, i++, img, color);
-        }
-    }
+	end_x = x + length * cos(angle * M_PI / 180.0);
+	end_y = y - length * sin(angle * M_PI / 180.0);
+	i = x;
+	if (angle != 90.0 && angle != 270.0)
+		while (i <= end_x)
+		{
+			j = y + (i - x) * tan(angle * M_PI / 180.0);
+			my_mlx_pixel_put(i, j, img, color);
+			i++;
+		}
+	else
+		while ((j = y - length) <= y + length)
+			my_mlx_pixel_put(i, j++, img, color);
 }
+
 void	draw_map(t_data *data, t_img *img)
 {
 	t_vector	*player;
@@ -80,7 +79,7 @@ void	draw_map(t_data *data, t_img *img)
 			if ((i + offseti) / ratio <= 0 || (j + offsetj) / ratio <= 0)
 				my_mlx_pixel_put(i, j, img, black);
 			else if (map[(int)((i + offseti) / ratio)]
-				[(int)((j + offsetj) / ratio)] == '0')
+					[(int)((j + offsetj) / ratio)] == '0')
 				my_mlx_pixel_put(i, j, img, data->floor);
 			else
 				my_mlx_pixel_put(i, j, img, black);

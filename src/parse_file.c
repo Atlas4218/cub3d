@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/01 18:47:54 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:18:56 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,42 +137,42 @@ int	parse_map(char	**map, t_data *data)
 	return (0);
 }
 
-// void	check_colors(t_data *data, char *file)
-// {
-// 	if (!ft_strncmp(*file, "F", 2))
-// 		data->floor = get_color((*file) + 1, data);
-// 	if (!ft_strncmp(*file, "C", 2))
-// 		data->ceiling = get_color((*file) + 1, data);
-// }
+void	check_colors(t_data *data, char *file)
+{
+	if (!ft_strncmp(file, "F", 2))
+		data->floor = get_color(file + 1);
+	if (!ft_strncmp(file, "C", 2))
+		data->ceiling = get_color(file + 1);
+}
 
-// void	check_element(t_data *data, char *file)
-// {
-// 	if (!ft_strncmp(*file, "N", 2))
-// 	{
-// 		if (data->wallno)
-// 			free(data->wallno);
-// 		data->wallno = get_img((*file) + 1, data);
-// 	}
-// 	if (!ft_strncmp(*file, "S", 2))
-// 	{
-// 		if (data->wallso)
-// 			free(data->wallso);
-// 		data->wallso = get_img((*file) + 1, data);
-// 	}
-// 	if (!ft_strncmp(*file, "EA", 3))
-// 	{
-// 		if (data->wallea)
-// 			free(data->wallea);
-// 		data->wallea = get_img((*file) + 2, data);
-// 	}
-// 	if (!ft_strncmp(*file, "WE", 3))
-// 	{
-// 		if (data->wallwe)
-// 			free(data->wallwe);
-// 		data->wallwe = get_img((*file) + 2, data);
-// 	}
-// 	check_colors(data, file);
-// }
+void	check_element(t_data *data, char *file)
+{
+	if (!ft_strncmp(file, "N", 2))
+	{
+		if (data->wallno)
+			free(data->wallno);
+		data->wallno = get_img(file + 1, data);
+	}
+	if (!ft_strncmp(file, "S", 2))
+	{
+		if (data->wallso)
+			free(data->wallso);
+		data->wallso = get_img(file + 1, data);
+	}
+	if (!ft_strncmp(file, "EA", 3))
+	{
+		if (data->wallea)
+			free(data->wallea);
+		data->wallea = get_img(file + 2, data);
+	}
+	if (!ft_strncmp(file, "WE", 3))
+	{
+		if (data->wallwe)
+			free(data->wallwe);
+		data->wallwe = get_img(file + 2, data);
+	}
+//	check_colors(data, file);
+}
 int	parse_file(char **file, t_data *data)
 {
 	if (!file || !data)
