@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:31:13 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/29 11:42:01 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:09:50 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	move_forward_backward(t_data *data)
 {
 	if (data->forward == 1)
 	{
-		if (data->map[(int)(data->ray.posx + (data->ray.dirx
-					* data->ray.movespeed))][(int)data->ray.posy] == '0')
-			data->ray.posx += data->ray.dirx * data->ray.movespeed;
-		if (data->map[(int)data->ray.posx][(int)(data->ray.posy
-			+ (data->ray.diry * data->ray.movespeed))] == '0')
+		if (data->map[(int)(data->ray.posy + (data->ray.diry
+					* data->ray.movespeed))][(int)data->ray.posx] == '0')
 			data->ray.posy += data->ray.diry * data->ray.movespeed;
+		if (data->map[(int)data->ray.posy][(int)(data->ray.posx
+			+ (data->ray.diry * data->ray.movespeed))] == '0')
+			data->ray.posx += data->ray.dirx * data->ray.movespeed;
 	}
 	if (data->backward == 1)
 	{
-		if (data->map[(int)(data->ray.posx - (data->ray.dirx
-					* data->ray.movespeed))][(int)data->ray.posy] == '0')
-			data->ray.posx -= data->ray.dirx * data->ray.movespeed;
-		if (data->map[(int)data->ray.posx][(int)(data->ray.posy
-			- (data->ray.diry * data->ray.movespeed))] == '0')
+		if (data->map[(int)(data->ray.posy - (data->ray.diry
+					* data->ray.movespeed))][(int)data->ray.posx] == '0')
 			data->ray.posy -= data->ray.diry * data->ray.movespeed;
+		if (data->map[(int)data->ray.posy][(int)(data->ray.posx
+			- (data->ray.dirx * data->ray.movespeed))] == '0')
+			data->ray.posx -= data->ray.dirx * data->ray.movespeed;
 	}
 }
 
@@ -38,21 +38,21 @@ void	strafe_right_left(t_data *data)
 {
 	if (data->strafeleft == 1)
 	{
-		if (data->map[(int)(data->ray.posx - (data->ray.planex
-					* data->ray.movespeed))][(int)data->ray.posy] == '0')
-			data->ray.posx -= data->ray.planex * data->ray.movespeed;
-		if (data->map[(int)data->ray.posx][(int)(data->ray.posy
-			- (data->ray.planey * data->ray.movespeed))] == '0')
+		if (data->map[(int)(data->ray.posy - (data->ray.planey
+					* data->ray.movespeed))][(int)data->ray.posx] == '0')
 			data->ray.posy -= data->ray.planey * data->ray.movespeed;
+		if (data->map[(int)data->ray.posy][(int)(data->ray.posx
+			- (data->ray.planex * data->ray.movespeed))] == '0')
+			data->ray.posx -= data->ray.planex * data->ray.movespeed;
 	}
 	if (data->straferight == 1)
 	{
-		if (data->map[(int)(data->ray.posx + (data->ray.planex
-					* data->ray.movespeed))][(int)data->ray.posy] == '0')
-			data->ray.posx += data->ray.planex * data->ray.movespeed;
-		if (data->map[(int)data->ray.posx][(int)(data->ray.posy
-			+ data->ray.planey * (data->ray.movespeed))] == '0')
+		if (data->map[(int)(data->ray.posy + (data->ray.planey
+					* data->ray.movespeed))][(int)data->ray.posx] == '0')
 			data->ray.posy += data->ray.planey * data->ray.movespeed;
+		if (data->map[(int)data->ray.posy][(int)(data->ray.posx
+			+ data->ray.planex * (data->ray.movespeed))] == '0')
+			data->ray.posx += data->ray.planex * data->ray.movespeed;
 	}
 }
 

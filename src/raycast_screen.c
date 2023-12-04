@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 19:18:06 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 12:11:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	increment_steps(t_data *data)
 {
 	while (data->ray.hit == 0)
 	{
-		// printf("map[x][y] = %d\n", data->map[data->ray.mapx][data->ray.mapy]);
 		if (data->ray.sidedistx < data->ray.sidedisty)
 		{
 			data->ray.sidedistx += data->ray.deltadistx;
@@ -52,7 +51,7 @@ void	increment_steps(t_data *data)
 			data->ray.mapy += data->ray.stepy;
 			data->ray.side = 1;
 		}
-		if (data->map[data->ray.mapx][data->ray.mapy] == '1')
+		if (data->map[data->ray.mapy][data->ray.mapx] == '1')
 			data->ray.hit = 1;
 	}
 	draw_start_end(data);

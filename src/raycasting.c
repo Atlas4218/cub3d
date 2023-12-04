@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 19:37:52 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:14:02 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	draw_column(t_data *data)
 	int	y;
 
 	y = 0;
-	data->ray.drawend = data->screen_height - data->ray.drawstart;
 	while (y < data->ray.drawstart)
 		y++;
 	if (y <= data->ray.drawend)
@@ -85,9 +84,10 @@ int	raycasting(t_data *data)
 		draw_column(data);
 		data->ray.x++;
 	}
-	// move_forward_backward(data);
-	// strafe_right_left(data);
-	// rotate_right(data);
-	// rotate_left(data);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
+	move_forward_backward(data);
+	strafe_right_left(data);
+	rotate_right(data);
+	rotate_left(data);
 	return (0);
 }

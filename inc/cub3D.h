@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/01 16:02:03 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:30:02 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int		parse_map(char **map, t_data *data);
 int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_map(char *filename);
-int	get_angle(char c);
+int	get_angle(char c, t_data *data);
 void	get_vector_dir(int angle, double *x, double *y);
 int		raycasting(t_data *data);
 void	steps_side_dist(t_data *data);

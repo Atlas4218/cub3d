@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/01 17:10:37 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/04 11:32:37 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,39 @@ int	closer(t_data *data)
 	return (5);
 }
 
-int	handle_keyevent(int keycode, t_data *data)
+int	handle_keypress(int keycode, t_data *data)
 {
-	if (keycode == XK_Escape)
+	if (keycode == 'a')
+		data->strafeleft = 1;
+	else if (keycode == XK_Left)
+		data->rotateright = 1;
+	else if (keycode == 'w' || keycode == XK_Up)
+		data->forward = 1;
+	else if (keycode == 's' || keycode == XK_Down)
+		data->backward = 1;
+	else if (keycode == 'd')
+		data->straferight = 1;
+	else if (keycode == XK_Right)
+		data->rotateleft = 1;
+	else if (keycode == XK_Escape)
 		closer(data);
+	return (0);
+}
+
+int	handle_keyrelease(int keycode, t_data *data)
+{
+	if (keycode == 'a')
+		data->strafeleft = 0;
+	else if (keycode == XK_Left)
+		data->rotateright = 0;
+	else if (keycode == 'w' || keycode == XK_Up)
+		data->forward = 0;
+	else if (keycode == 's' || keycode == XK_Down)
+		data->backward = 0;
+	else if (keycode == 'd')
+		data->straferight = 0;
+	else if (keycode == XK_Right)
+		data->rotateleft = 0;
 	return (0);
 }
 
@@ -45,8 +74,11 @@ void	cub(t_data *data)
 	data->ray.ray_ptr = mlx_new_image(data->mlx, 800, 600);
 	data->ray.data_addr = (int *)mlx_get_data_addr(data->ray.ray_ptr,
 			&data->ray.bpp, &data->ray.size_l, &data->ray.endian);
+	mlx_hook(data->mlx_win, 33, 0L, closer, data);
+	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
 	mlx_loop_hook(data->mlx, raycasting, data);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
+	// mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
+	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
 	mlx_loop(data->mlx);
 }
 

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/11/30 18:34:42 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:29:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 void	init_player(t_data *data, int x, int y, char c)
 {
-	data->ray.angle = get_angle(c);
+	data->ray.planex = 0;
+	data->ray.planey = 0;
+	data->ray.angle = get_angle(c, data);
 	data->ray.posx = x;
 	data->ray.posy = y;
-	get_vector_dir(data->ray.angle, &(data->ray.dirx), &(data->ray.diry));
-	data->ray.planex = 0;
-	data->ray.planey = 0.66;
+	data->ray.dirx = 0;
+	data->ray.diry = 0;
+	get_vector_dir(data->ray.angle, &data->ray.dirx, &data->ray.diry);
 	data->screen_width = 800;
 	data->screen_height = 600;
 }
