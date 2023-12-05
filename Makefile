@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/04 13:55:30 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/12/05 12:50:29 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ SRC 			= get_map.c \
 				raycasting.c \
 				main.c \
 				utils.c \
-				minimap.c \
-				ft_simple_split.c \
+				ft_simple_split.c\
+				minimap.c\
 
 RM 				= rm -rf
 LIBFT_PATH		=	./libft
@@ -33,7 +33,7 @@ SOURCES_DIR		=	src
 HEADER			=	./inc/cub3D.h
 SOURCES			=	$(addprefix $(SOURCES_DIR)/, $(SRC))
 OBJ 			= $(SOURCES:.c=.o)
-FLAGS 			= -Wall -Werror -Wextra -g3
+FLAGS 			= -Wall -Werror -Wextra -g
 MLX				= -Lminilibx-linux -lmlx_Linux -L/usr/lib -Iminilibx-linux -lXext -lX11 -lm -lz -L. -lmlx
 
 all : $(NAME)
