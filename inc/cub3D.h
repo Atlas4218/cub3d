@@ -6,11 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/12/05 12:51:02 by gbonnard         ###   ########.fr       */
-=======
-/*   Updated: 2023/12/05 16:22:51 by rastie           ###   ########.fr       */
->>>>>>> origin
+/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +68,24 @@ typedef struct s_vector
 	void	*ray_ptr;
 }	t_vector;
 
+typedef struct s_texture
+{
+	void	*img;
+	int		*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int		texdir;
+	double	wallx;
+	int		texx;
+	int		texy;
+	double	step;
+	double	texpos;
+
+}	t_texture;
+
 typedef struct s_circle
 {
 	int	x_center;
@@ -117,6 +131,8 @@ typedef struct s_data
 	void		*mlx;
 	void		*mlx_win;
 	t_img		*img_map;
+	t_texture	tex;
+	t_texture	texture[4];
 	t_vector	ray;
 }	t_data;
 
@@ -149,5 +165,7 @@ int		has_space_nearby(char **map, int i, int j);
 int		get_color(char *src);
 void	*get_img(char *filename, t_data *data);
 int		parse_map(char	**map, t_data *data);
+void	init_texture(t_data *data);
+int		init_wall(t_data *data);
 
 #endif

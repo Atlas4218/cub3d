@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 17:30:37 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,49 @@ void	deltadist_init(t_data *data)
 
 void	draw_walls(t_data *data, int x, int y)
 {
-	t_img	img;
-	int	color;
-
-	color = 0xFFFFFF;
-
-	while (y <= data->ray.drawend)
+	y = data->ray.drawstart - 1;
+	init_texture(data);
+	data->tex.step = 1.0 * data->texture[0].height / data->ray.lineheight;
+	data->tex.texx = (int)(data->tex.wallx
+			* (double)data->texture[data->tex.texdir].width);
+	if (data->ray.side == 0 && data->ray.raydirx > 0)
+		data->tex.texx = data->texture[data->tex.texdir].width
+			- data->tex.texx - 1;
+	if (data->ray.side == 1 && data->ray.raydiry < 0)
+		data->tex.texx = data->texture[data->tex.texdir].width
+			- data->tex.texx - 1;
+	data->tex.texpos = (data->ray.drawstart - data->screen_height / 2
+			+ data->ray.lineheight / 2) * data->tex.step;
+	while (++y <= data->ray.drawend)
 	{
-		my_mlx_pixel_put(x, y, &img, color);
-		y++;
+		data->tex.texy = (int)data->tex.texpos &(data
+				->texture[data->tex.texdir].height - 1);
+		data->tex.texpos += data->tex.step;
+		if (y < data->screen_height && x < data->screen_width)
+			data->ray.data_addr[y * data->ray.size_l / 4 + x]
+				= data->texture[data->tex.texdir].addr[data->tex.texy
+				* data->texture[data->tex.texdir].size_l / 4 + data->tex.texx];
 	}
 }
 
 void	draw_column(t_data *data)
 {
 	int	y;
+	int	z;
 
 	y = 0;
+	data->ray.drawend = data->screen_height - data->ray.drawstart;
+	z = data->ray.drawend;
 	while (y < data->ray.drawstart)
 		y++;
+		// data->ray.data_addr[y * data->ray.size_l / 4
+		// 	+ data->ray.x] = data->ceiling;
 	if (y <= data->ray.drawend)
 		draw_walls(data, data->ray.x, y);
+	y = z;
+	// while (++y < data->screen_height)
+	// 	data->ray.data_addr[y * data->ray.size_l / 4
+	// 		+data->ray.x] = data->floor;
 	return ;
 }
 
@@ -80,8 +102,8 @@ int	raycasting(t_data *data)
 		data->ray.perpwalldist = 0;
 		data->ray.hit = 0;
 		steps_side_dist(data);
-		data->ray.movespeed = 1;
-		data->ray.rotspeed = 1;
+		data->ray.movespeed = 0.1;
+		data->ray.rotspeed = 0.033 * 1.8;
 		draw_column(data);
 		data->ray.x++;
 	}

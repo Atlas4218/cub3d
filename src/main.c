@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:04:55 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	handle_keyrelease(int keycode, t_data *data)
 void	cub(t_data *data)
 {
 	data->mlx = mlx_init();
+	init_wall(data);
 	data->mlx_win = mlx_new_window(data->mlx, 800, 600, "Cub3D");
 	data->ray.ray_ptr = mlx_new_image(data->mlx, 800, 600);
 	data->ray.data_addr = (int *)mlx_get_data_addr(data->ray.ray_ptr,

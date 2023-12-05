@@ -6,11 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2023/12/05 12:50:29 by gbonnard         ###   ########.fr        #
-=======
-#    Updated: 2023/12/05 16:23:41 by rastie           ###   ########.fr        #
->>>>>>> origin
+#    Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +25,7 @@ SRC 			= get_map.c \
 				draw_utils.c \
 				ft_simple_split.c\
 				minimap.c\
+				texture.c \
 
 RM 				= rm -rf
 LIBFT_PATH		=	./libft
