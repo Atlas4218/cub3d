@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_simple_split.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roman <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 19:48:38 by roman             #+#    #+#             */
-/*   Updated: 2023/12/03 20:21:08 by roman            ###   ########.fr       */
+/*   Updated: 2023/12/04 13:55:30 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/cub3D.h"
 
 static char	**calcul_malloc(char const *s, char c)
 {

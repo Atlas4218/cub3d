@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/02 12:51:34 by roman            ###   ########.fr       */
+/*   Updated: 2023/12/04 17:28:11 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "../inc/cub3D.h"
 
 void	my_mlx_pixel_put(int x, int y, t_img *img, int color)
 {
@@ -18,8 +18,8 @@ void	my_mlx_pixel_put(int x, int y, t_img *img, int color)
 
 	if ((x < 0) || (x >= img->width) || (y < 0) || (y >= img->height))
 		return ;
-	i = (y * img->line_size) + (x * (img->bpp / 8));
-	*(unsigned int *)&img->data_address[i] = color;
+	i = (y * img->size_line) + (x * (img->bpp / 8));
+	*(unsigned int *)&img->data[i] = color;
 }
 
 void	draw_circle(t_img *img, int x, int y, int r, int color)
@@ -41,7 +41,7 @@ void	draw_circle(t_img *img, int x, int y, int r, int color)
 	}
 }
 
-void draw_line(int x, int y, int length, int img, int color, int angle)
+void draw_line(t_img *img, int x, int y, int angle, int length, int color)
 {
 	int end_x;
 	int end_y;

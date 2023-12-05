@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 12:17:28 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:30:37 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,14 @@ void	deltadist_init(t_data *data)
 
 void	draw_walls(t_data *data, int x, int y)
 {
+	t_img	img;
 	int	color;
 
 	color = 0xFFFFFF;
 
 	while (y <= data->ray.drawend)
 	{
-		mlx_pixel_put(data->mlx, data->mlx_win, x, y, color);
+		my_mlx_pixel_put(x, y, &img, color);
 		y++;
 	}
 }
@@ -79,8 +80,8 @@ int	raycasting(t_data *data)
 		data->ray.perpwalldist = 0;
 		data->ray.hit = 0;
 		steps_side_dist(data);
-		data->ray.movespeed = 0.1;
-		data->ray.rotspeed = 0.033 * 1.8;
+		data->ray.movespeed = 1;
+		data->ray.rotspeed = 1;
 		draw_column(data);
 		data->ray.x++;
 	}

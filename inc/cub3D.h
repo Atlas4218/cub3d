@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 12:21:34 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:09:51 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_vector
 
 typedef struct s_data
 {
-	t_xpm		img;
+	t_xpm		xpm;
 	char		**map;
 	char		*mappath;
 	int			x;
@@ -82,7 +82,6 @@ typedef struct s_data
 	t_img		*wallwe;
 	int			floor;
 	int			ceiling;
-
 	int			no;
 	int			so;
 	int			ea;

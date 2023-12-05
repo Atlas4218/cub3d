@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/11/30 16:03:48 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/12/04 13:55:30 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRC 			= get_map.c \
 				raycasting.c \
 				main.c \
 				utils.c \
+				minimap.c \
+				ft_simple_split.c \
 
 RM 				= rm -rf
 LIBFT_PATH		=	./libft

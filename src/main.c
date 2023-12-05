@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 11:32:37 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:28:11 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	cub(t_data *data)
 	mlx_hook(data->mlx_win, 33, 0L, closer, data);
 	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
 	mlx_loop_hook(data->mlx, raycasting, data);
-	// mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
 	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
 	mlx_loop(data->mlx);
 }
