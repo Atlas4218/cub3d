@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 12:52:19 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:02:02 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,7 @@ void	cub(t_data *data)
 	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
 	mlx_loop(data->mlx);
 }
-void	minimap(t_data *data)
-{
-	data->mlx = mlx_init();
-	data->mlx_win = mlx_new_window(data->mlx, 500, 500, "Cub3D");
-	data->img_map = mlx_new_image(data->mlx, 500, 500);
-	mlx_hook(data->mlx_win, 33, 0L, closer, data);
-	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
-	mlx_loop_hook(data->mlx, draw_map, data);
-	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
-	mlx_loop(data->mlx);
-}
+
 void	minimap(t_data *data)
 {
 	data->mlx = mlx_init();
@@ -117,7 +107,7 @@ int	main(int argc, char **argv)
 	data.mappath = argv[1];
 	if (init_data(&data))
 		return (closer(&data));
-//	cub(&data);	
+	cub(&data);	
 	minimap(&data);
 	return (0);
 }

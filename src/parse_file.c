@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/05 12:50:08 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:59:42 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int	get_color(char *src)
 	if (i != 3)
 	{
 		errno = 22;
-		return (perror("The format is r,g,b\n",clear_tab(colors),-1));
+		return (perror("The format is r,g,b\n"), clear_tab(colors), -1);
 	}
 	color = encode_rgb(ft_atoi(colors[0]),
 			ft_atoi(colors[1]), ft_atoi(colors[2]));
