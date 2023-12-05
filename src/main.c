@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 13:08:19 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:04:55 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,21 @@ int	closer(t_data *data)
 {
 	if (data->file)
 		clear_tab(data->file);
-	free(data->mlx);
+	if (data->mlx_win)
+		mlx_destroy_window(data->mlx, data->mlx_win);
+	if (data->wallno)
+		mlx_destroy_image(data->mlx, data->wallno);
+	if (data->wallso)
+		mlx_destroy_image(data->mlx, data->wallso);
+	if (data->wallea)
+		mlx_destroy_image(data->mlx, data->wallea);
+	if (data->wallwe)
+		mlx_destroy_image(data->mlx, data->wallwe);
+	if (data->mlx)
+	{
+		mlx_destroy_display(data->mlx);
+		free(data->mlx);
+	}
 	exit(0);
 	return (5);
 }
@@ -89,7 +103,7 @@ void	minimap(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
 	mlx_hook(data->mlx_win, 33, 0L, closer, data);
 	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
-	mlx_loop_hook(data->mlx, draw_map, data);
+	mlx_loop_hook(data->mlx, gest_minimap, data);
 	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
 	mlx_loop(data->mlx);
 }

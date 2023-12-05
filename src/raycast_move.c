@@ -6,7 +6,11 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:31:13 by gbonnard          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/04 17:29:53 by gbonnard         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/05 14:29:29 by rastie           ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +78,7 @@ void	rotate_right(t_data *data)
 		data->ray.planey = oldplanex * sin(-data->ray.rotspeed)
 			+ data->ray.planey * cos(-data->ray.rotspeed);
 	}
+	data->ray.angle = acos(data->ray.dirx) * (180 / M_PI);
 }
 
 void	rotate_left(t_data *data)
@@ -94,4 +99,5 @@ void	rotate_left(t_data *data)
 		data->ray.planey = oldplanex * sin(data->ray.rotspeed)
 			+ data->ray.planey * cos(data->ray.rotspeed);
 	}
+	data->ray.angle = acos(data->ray.dirx) * (180 / M_PI);
 }

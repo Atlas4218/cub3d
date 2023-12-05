@@ -6,7 +6,11 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2023/12/05 12:50:29 by gbonnard         ###   ########.fr        #
+=======
+#    Updated: 2023/12/05 16:23:41 by rastie           ###   ########.fr        #
+>>>>>>> origin
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,11 +20,13 @@ SRC 			= get_map.c \
 				init.c \
 				parse_map.c \
 				parse_file.c \
+				parsing_utils.c\
 				raycast_move.c \
 				raycast_screen.c \
 				raycasting.c \
 				main.c \
 				utils.c \
+				draw_utils.c \
 				ft_simple_split.c\
 				minimap.c\
 

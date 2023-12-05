@@ -6,12 +6,17 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/05 12:59:42 by gbonnard         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/05 16:20:18 by rastie           ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
+<<<<<<< HEAD
 int	is_void(char c)
 {
 	return (!c || c == ' ');
@@ -149,6 +154,8 @@ int	parse_map(char	**map, t_data *data)
 	return (0);
 }
 
+=======
+>>>>>>> origin
 void	check_colors(t_data *data, char *file)
 {
 	if (!ft_strncmp(file, "F ", 2))
@@ -185,6 +192,7 @@ void	check_element(t_data *data, char *file)
 	}
 	check_colors(data, file);
 }
+
 int	parse_file(char **file, t_data *data)
 {
 	if (!file || !data)
@@ -193,7 +201,7 @@ int	parse_file(char **file, t_data *data)
 	data->ceiling = -1;
 	while ((!data->wallno || !data->wallso || !data->wallea || !data->wallwe
 			|| data->floor < 0 || data->ceiling < 0
-			) && *file)
+		) && *file)
 	{
 		check_element(data, *file);
 		file++;

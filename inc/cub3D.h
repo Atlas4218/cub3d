@@ -6,7 +6,11 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/12/05 12:51:02 by gbonnard         ###   ########.fr       */
+=======
+/*   Updated: 2023/12/05 16:22:51 by rastie           ###   ########.fr       */
+>>>>>>> origin
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +70,22 @@ typedef struct s_vector
 	float	deltadistx;
 	float	deltadisty;
 	void	*ray_ptr;
-
-
 }	t_vector;
+
+typedef struct s_circle
+{
+	int	x_center;
+	int	y_center;
+	int	radius;
+}	t_circle;
+
+typedef struct s_line
+{
+	int	x_origin;
+	int	y_origin;
+	int	length;
+	int	angle;
+}	t_line;
 
 typedef struct s_data
 {
@@ -99,7 +116,7 @@ typedef struct s_data
 	int			screen_height;
 	void		*mlx;
 	void		*mlx_win;
-	t_img	*img_map;
+	t_img		*img_map;
 	t_vector	ray;
 }	t_data;
 
@@ -111,7 +128,7 @@ int		parse_file(char **file, t_data *data);
 int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_file(char *filename);
-int	get_angle(char c, t_data *data);
+int		get_angle(char c, t_data *data);
 void	get_vector_dir(int angle, float *x, float *y);
 int		raycasting(t_data *data);
 void	steps_side_dist(t_data *data);
@@ -121,8 +138,16 @@ void	rotate_right(t_data *data);
 void	rotate_left(t_data *data);
 void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
 char	**ft_simple_split(char const *s, char c);
-int encode_rgb(int r, int g, int b);
-int opposite_color(int original_color);
-int	draw_map(t_data *data);
+int		encode_rgb(int r, int g, int b);
+int		inv_color(int original_color);
+int		gest_minimap(t_data *data);
+void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
+void	draw_circle(t_circle circle, t_img *img, int color);
+void	draw_line(t_line line, t_img *img, int color);
+int		is_void(char c);
+int		has_space_nearby(char **map, int i, int j);
+int		get_color(char *src);
+void	*get_img(char *filename, t_data *data);
+int		parse_map(char	**map, t_data *data);
 
 #endif

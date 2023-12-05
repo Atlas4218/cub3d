@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 11:24:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 13:34:19 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/05 13:30:28 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ int	get_angle(char c, t_data *data)
 	return ((data->ray.planex = 0.66), 270);
 }
 
-int encode_rgb(int r, int g, int b)
+int	encode_rgb(int r, int g, int b)
 {
 	return ((r << 16) | (g << 8) | b);
 }
 
-void decode_rgb(int color, int *r, int *g, int *b)
+void	decode_rgb(int color, int *r, int *g, int *b)
 {
 	*r = (color >> 16) & 0xFF;
 	*g = (color >> 8) & 0xFF;
 	*b = color & 0xFF;
 }
 
-int opposite_color(int original_color)
+int	inv_color(int original_color)
 {
 	int	r;
 	int	g;
