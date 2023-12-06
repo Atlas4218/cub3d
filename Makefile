@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/12/05 17:33:49 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,16 @@ SRC 			= get_map.c \
 				init.c \
 				parse_map.c \
 				parse_file.c \
-				parsing_utils.c\
 				raycast_move.c \
 				raycast_screen.c \
 				raycasting.c \
 				main.c \
 				utils.c \
-				draw_utils.c \
 				ft_simple_split.c\
 				minimap.c\
 				texture.c \
+				draw_utils.c\
+				parsing_utils.c\
 
 RM 				= rm -rf
 LIBFT_PATH		=	./libft

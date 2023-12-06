@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:24:31 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_xpm
 typedef struct s_vector
 {
 	int		*data_addr;
+	int		*data_addr2;
 	int		mapx;
 	int		mapy;
 	int		stepx;
@@ -66,6 +67,7 @@ typedef struct s_vector
 	float	deltadistx;
 	float	deltadisty;
 	void	*ray_ptr;
+	void	*ray_ptr2;
 }	t_vector;
 
 typedef struct s_texture

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/04 12:22:43 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:22:50 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,14 @@ void	steps_side_dist(t_data *data)
 				- data->ray.posy) * data->ray.deltadisty;
 	}
 	increment_steps(data);
+}
+void	ft_swap(t_data *data)
+{
+	void	*tmp;
+	tmp = data->ray.ray_ptr;
+	data->ray.ray_ptr = data->ray.ray_ptr2;
+	data->ray.ray_ptr2 = tmp;
+	tmp = data->ray.data_addr;
+	data->ray.data_addr = data->ray.data_addr2;
+	data->ray.data_addr2 = tmp;
 }

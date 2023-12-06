@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 19:20:52 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,13 @@ int	handle_keyrelease(int keycode, t_data *data)
 
 void	cub(t_data *data)
 {
-	data->mlx = mlx_init();
 	init_wall(data);
-	data->mlx_win = mlx_new_window(data->mlx, 800, 600, "Cub3D");
 	data->ray.ray_ptr = mlx_new_image(data->mlx, 800, 600);
 	data->ray.data_addr = (int *)mlx_get_data_addr(data->ray.ray_ptr,
+			&data->ray.bpp, &data->ray.size_l, &data->ray.endian);
+	data->mlx_win = mlx_new_window(data->mlx, 800, 600, "Cub3D");
+	data->ray.ray_ptr2 = mlx_new_image(data->mlx, 800, 600);
+	data->ray.data_addr2 = (int *)mlx_get_data_addr(data->ray.ray_ptr2,
 			&data->ray.bpp, &data->ray.size_l, &data->ray.endian);
 	mlx_hook(data->mlx_win, 33, 0L, closer, data);
 	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
@@ -123,6 +125,6 @@ int	main(int argc, char **argv)
 	if (init_data(&data))
 		return (closer(&data));
 	cub(&data);	
-	minimap(&data);
+	// minimap(&data);
 	return (0);
 }

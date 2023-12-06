@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:16:25 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 14:13:12 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:34:27 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_tex_addr(t_data *data)
 			&data->texture[2].bpp, &data->texture[2].size_l,
 			&data->texture[2].endian);
 	data->texture[3].addr = (int *)mlx_get_data_addr(data->texture[3].img,
-			&data->texture[3].bpp, &data->texture[0].size_l,
+			&data->texture[3].bpp, &data->texture[3].size_l,
 			&data->texture[3].endian);
 }
 
