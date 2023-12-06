@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:51:44 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:48:46 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	closer(t_data *data)
 void	cub(t_data *data)
 {
 	init_wall(data);
-	data->ray.ray_ptr = mlx_new_image(data->mlx, 800, 600);
+	data->ray.ray_ptr = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
 	data->ray.data_addr = (int *)mlx_get_data_addr(data->ray.ray_ptr,
 			&data->ray.bpp, &data->ray.size_l, &data->ray.endian);
-	data->mlx_win = mlx_new_window(data->mlx, 800, 600, "Cub3D");
-	data->ray.ray_ptr2 = mlx_new_image(data->mlx, 800, 600);
+	data->mlx_win = mlx_new_window(data->mlx, data->screen_width, data->screen_height, "Cub3D");
+	data->ray.ray_ptr2 = mlx_new_image(data->mlx, data->screen_width, data->screen_height);
 	data->ray.data_addr2 = (int *)mlx_get_data_addr(data->ray.ray_ptr2,
 			&data->ray.bpp, &data->ray.size_l, &data->ray.endian);
 	mlx_hook(data->mlx_win, 33, 0L, closer, data);
@@ -77,7 +77,6 @@ int	main(int argc, char **argv)
 	data.mappath = argv[1];
 	if (init_data(&data))
 		return (closer(&data));
-	cub(&data);	
-	minimap(&data);
+	cub(&data);
 	return (0);
 }

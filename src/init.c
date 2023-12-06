@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 17:12:24 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:44:10 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	init_player(t_data *data, int x, int y, char c)
 	data->ray.posx = (float)x + 0.5;
 	data->ray.posy = (float)y + 0.5;
 	get_vector_dir(data->ray.angle, &data->ray.dirx, &data->ray.diry);
-	data->screen_width = 800;
-	data->screen_height = 600;
+	mlx_get_screen_size(data->mlx, &data->screen_width, &data->screen_height);
 }
 
 int	init_file(t_data *data)

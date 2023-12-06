@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:28:35 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 17:11:28 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:49:34 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ void	raycasting_init(t_data *data)
 	data->ray.mapy = (int)data->ray.posy;
 	data->ray.perpwalldist = 0;
 	data->ray.hit = 0;
-	data->ray.movespeed = 0.01;
-	data->ray.rotspeed = 0.033;
+	data->ray.movespeed = 0.05;
+	data->ray.rotspeed = 0.055;
 }
