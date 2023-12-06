@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 18:43:21 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:10:22 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	init_player(t_data *data, int x, int y, char c)
 {
-	data->ray.planex = 0;
-	data->ray.planey = 0;
 	data->ray.angle = get_angle(c, data);
-	data->ray.posx = (float)x - 0.5;
-	data->ray.posy = (float)y - 0.5;
+	data->ray.posx = x;
+	data->ray.posy = y;
 	get_vector_dir(data->ray.angle, &data->ray.dirx, &data->ray.diry);
 	data->screen_width = 800;
 	data->screen_height = 600;
@@ -60,7 +58,6 @@ void	init_texture(t_data *data)
 	data->tex.wallx -= floor(data->tex.wallx);
 
 }
-
 
 int	init_data(t_data *data)
 {

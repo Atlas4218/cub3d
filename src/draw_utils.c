@@ -47,23 +47,29 @@ void	draw_circle(t_circle circle, t_img *img, int color)
 
 void	draw_line(t_line line, t_img *img, int color)
 {
-	int	end_x;
 	int	i;
-	int	j;
 
-	end_x = line.x_origin + line.length * cos(line.angle * M_PI / 180);
+	line.end_x = line.x_origin + line.length * cos(line.angle * M_PI / 180);
 	i = line.x_origin;
-	j = line.y_origin;
-	if (line.angle != 90.0 && line.angle != 270.0)
+	if (line.angle != 90 && line.angle != 270)
 	{
-		while (i <= end_x)
+		while (i != line.end_x)
 		{
-			j = line.y_origin + (i - line.x_origin)
+			line.x_origin = line.y_origin + (i - line.x_origin)
 				* tan(line.angle * M_PI / 180);
-			my_mlx_pixel_put(i++, j, img, color);
+			if (line.angle >= 180)
+				my_mlx_pixel_put(i--, line.x_origin, img, color);
+			else
+				my_mlx_pixel_put(i++, line.x_origin, img, color);
 		}
 	}
 	else
-		while (j >= line.y_origin - line.length)
-			my_mlx_pixel_put(i, j--, img, color);
+	{
+		if (line.angle == 270)
+			while (line.x_origin >= line.y_origin - line.length)
+				my_mlx_pixel_put(i, line.x_origin--, img, color);
+		else
+			while (line.x_origin >= line.y_origin + line.length)
+				my_mlx_pixel_put(i, line.x_origin++, img, color);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 19:27:58 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:06:22 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,23 +63,37 @@ void	draw_walls(t_data *data, int x, int y)
 
 void	draw_column(t_data *data)
 {
-	// t_img	*img;
-	int		y;
-	// int		z;
+	int	y;
 
 	y = 0;
-	// img = data->img_map;
 	data->ray.drawend = data->screen_height - data->ray.drawstart;
-	// z = data->ray.drawend;
 	while (y < data->ray.drawstart)
 		y++;
-		// my_mlx_pixel_put(data->ray.x, y, img, data->ceiling);
 	if (y <= data->ray.drawend)
 		draw_walls(data, data->ray.x, y);
-	// y = z;
-	// while (++y < data->screen_height)
-	// 	my_mlx_pixel_put(data->ray.x, y, img, data->floor);
 	return ;
+}
+
+void	draw_background(t_data *data)
+{
+	t_img	*vision;
+	int	i;
+	int	j;
+
+	vision = data->ray.ray_ptr;
+	i = 0;
+	while (i <= vision->height)
+	{
+		j = 0;
+		while (j <= vision->width)
+		{
+			if (i < vision->height / 2)
+				my_mlx_pixel_put(j++, i, vision, data->ceiling);
+			else
+				my_mlx_pixel_put(j++, i, vision, data->floor);
+		}
+		i++;
+	}
 }
 
 /*
@@ -88,7 +102,7 @@ void	draw_column(t_data *data)
 int	raycasting(t_data *data)
 {
 	data->ray.x = 0;
-
+	draw_background(data);
 	while (data->ray.x < data->screen_width)
 	{
 		data->ray.camerax = 2 * data->ray.x / (float)data->screen_width - 1;

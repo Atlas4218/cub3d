@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 19:20:52 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 12:11:16 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	closer(t_data *data)
 		mlx_destroy_image(data->mlx, data->wallea);
 	if (data->wallwe)
 		mlx_destroy_image(data->mlx, data->wallwe);
+	if (data->img_map)
+		mlx_destroy_image(data->mlx, data->img_map);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -100,7 +102,6 @@ void	cub(t_data *data)
 
 void	minimap(t_data *data)
 {
-	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, 500, 500, "Cub3D");
 	data->img_map = mlx_new_image(data->mlx, 500, 500);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
@@ -125,6 +126,6 @@ int	main(int argc, char **argv)
 	if (init_data(&data))
 		return (closer(&data));
 	cub(&data);	
-	// minimap(&data);
+	minimap(&data);
 	return (0);
 }
