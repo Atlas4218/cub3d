@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 16:43:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:20:38 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int	parse_file(char **file, t_data *data)
 		return (perror("Missing/Wrong element(s)\n"), closer(data), 0);
 	}
 	data->map = file;
-	return (parse_map(file, data));
+	if (parse_map(file, data) || !data->nbplayer)
+		return (1);
+	return (0);
 }

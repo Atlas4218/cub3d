@@ -47,29 +47,64 @@ void	draw_circle(t_circle circle, t_img *img, int color)
 
 void	draw_line(t_line line, t_img *img, int color)
 {
+	int	end_x;
 	int	i;
+	int	y;
 
-	line.end_x = line.x_origin + line.length * cos(line.angle * M_PI / 180);
 	i = line.x_origin;
-	if (line.angle != 90 && line.angle != 270)
+	y = line.y_origin;
+	end_x = line.length * cos(line.angle * M_PI / 180) + i;
+	if (line.angle == 270)
+			while (y >= line.y_origin - line.length)
+				my_mlx_pixel_put(i, y--, img, color);
+	else if (line.angle == 90)
+			while (y >= line.y_origin + line.length)
+				my_mlx_pixel_put(i, y++, img, color);
+	else if (line.angle > 90 && line.angle < 270)
 	{
-		while (i != line.end_x)
+		while (i >= end_x)
 		{
-			line.x_origin = line.y_origin + (i - line.x_origin)
-				* tan(line.angle * M_PI / 180);
-			if (line.angle >= 180)
-				my_mlx_pixel_put(i--, line.x_origin, img, color);
-			else
-				my_mlx_pixel_put(i++, line.x_origin, img, color);
+			y = tan(line.angle * M_PI / 180) * (i - line.x_origin)
+				+ line.y_origin;
+			my_mlx_pixel_put(i--, y, img, color);
 		}
 	}
 	else
 	{
-		if (line.angle == 270)
-			while (line.x_origin >= line.y_origin - line.length)
-				my_mlx_pixel_put(i, line.x_origin--, img, color);
-		else
-			while (line.x_origin >= line.y_origin + line.length)
-				my_mlx_pixel_put(i, line.x_origin++, img, color);
+		while (i <= end_x)
+		{
+			y = tan(line.angle * M_PI / 180) * (i - line.x_origin)
+				+ line.y_origin;
+			my_mlx_pixel_put(i++, y, img, color);
+		}
 	}
 }
+
+
+/*
+ end_x = length * cos(angle * M_PI / 180)
+
+
+ si l'angle est 90 ou 270
+ 	90
+		put_pixel
+	270
+		put_pixel
+	
+sinon si l'angle est compris entre 90 t 270 exclus
+ 	tant que x >= end_x
+		calcul y
+		put_pixel
+		i--
+sinon
+	tant que x <= end_x
+		calcul y
+		put_pixel
+		i++
+
+calcul de y
+tan(angle) = sin/cos = Oppose sur ajacent
+l'oppose = y = sin(angle)
+tan(angle) * x
+*/
+   	
