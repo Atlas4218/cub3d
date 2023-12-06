@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 17:44:10 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:56:49 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ int	init_file(t_data *data)
 int	init_win(t_data *data)
 {
 	if (init_file(data))
+		return (closer(data));
+	data->img_map = mlx_new_image(data->mlx, 500, 500);
+	if (!data->img_map)
 		return (closer(data));
 	return (0);
 }
