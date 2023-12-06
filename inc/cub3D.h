@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 12:30:50 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:52:33 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,12 @@ void	*get_img(char *filename, t_data *data);
 int		parse_map(char	**map, t_data *data);
 void	init_texture(t_data *data);
 int		init_wall(t_data *data);
+void	ft_swap(t_data *data);
+int		is_valid_move_x(t_data *data, float new_posx);
+int		is_valid_move_y(t_data *data, float new_posy);
+void	minimap(t_data *data);
+int		handle_keyrelease(int keycode, t_data *data);
+int		handle_keypress(int keycode, t_data *data);
+void	raycasting_init(t_data *data);
 
 #endif

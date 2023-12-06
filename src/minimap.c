@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 11:19:02 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/06 16:43:14 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,16 @@ int	gest_minimap(t_data *data)
 	draw_line(dir, img, inv_color(data->floor));
 	mlx_put_image_to_window(data->mlx, data->mlx_win, img, 0, 0);
 	return (0);
+}
+
+void	minimap(t_data *data)
+{
+	data->mlx_win = mlx_new_window(data->mlx, 500, 500, "Cub3D");
+	data->img_map = mlx_new_image(data->mlx, 500, 500);
+	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
+	mlx_hook(data->mlx_win, 33, 0L, closer, data);
+	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
+	mlx_loop_hook(data->mlx, gest_minimap, data);
+	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
+	mlx_loop(data->mlx);
 }

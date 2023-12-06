@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 10:59:00 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/06 16:49:17 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	parse_room(char **map, int i, t_data *data)
 		}
 		else if (line[j] != ' ' && line[j] != '1' && line[j] != '0')
 			return (perror("Unrecognised character\n"), 1);
-		if (j && has_space_nearby(map, i, j) 
+		if (j && has_space_nearby(map, i, j)
 			&& !is_void(line[j]) && line[j] != '1')
 			return (perror("Space wrongly placed\n"), 1);
 		j++;

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 12:11:16 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:51:44 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,6 @@ int	closer(t_data *data)
 	return (5);
 }
 
-int	handle_keypress(int keycode, t_data *data)
-{
-	if (keycode == 'a')
-		data->strafeleft = 1;
-	else if (keycode == XK_Left)
-		data->rotateright = 1;
-	else if (keycode == 'w' || keycode == XK_Up)
-		data->forward = 1;
-	else if (keycode == 's' || keycode == XK_Down)
-		data->backward = 1;
-	else if (keycode == 'd')
-		data->straferight = 1;
-	else if (keycode == XK_Right)
-		data->rotateleft = 1;
-	else if (keycode == XK_Escape)
-		closer(data);
-	return (0);
-}
-
-int	handle_keyrelease(int keycode, t_data *data)
-{
-	if (keycode == 'a')
-		data->strafeleft = 0;
-	else if (keycode == XK_Left)
-		data->rotateright = 0;
-	else if (keycode == 'w' || keycode == XK_Up)
-		data->forward = 0;
-	else if (keycode == 's' || keycode == XK_Down)
-		data->backward = 0;
-	else if (keycode == 'd')
-		data->straferight = 0;
-	else if (keycode == XK_Right)
-		data->rotateleft = 0;
-	return (0);
-}
-
 void	cub(t_data *data)
 {
 	init_wall(data);
@@ -96,18 +60,6 @@ void	cub(t_data *data)
 	mlx_hook(data->mlx_win, 33, 0L, closer, data);
 	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
 	mlx_loop_hook(data->mlx, raycasting, data);
-	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
-	mlx_loop(data->mlx);
-}
-
-void	minimap(t_data *data)
-{
-	data->mlx_win = mlx_new_window(data->mlx, 500, 500, "Cub3D");
-	data->img_map = mlx_new_image(data->mlx, 500, 500);
-	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
-	mlx_hook(data->mlx_win, 33, 0L, closer, data);
-	mlx_hook(data->mlx_win, 02, 1L << 0, handle_keypress, data);
-	mlx_loop_hook(data->mlx, gest_minimap, data);
 	mlx_hook(data->mlx_win, 03, 1L << 1, handle_keyrelease, data);
 	mlx_loop(data->mlx);
 }

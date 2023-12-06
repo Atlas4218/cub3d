@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 12:06:41 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 16:49:11 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	increment_steps(t_data *data)
 		else
 		{
 			data->ray.sidedisty += data->ray.deltadisty;
+			if (data->ray.mapy < data->lenmax)
 			data->ray.mapy += data->ray.stepy;
 			data->ray.side = 1;
 		}
@@ -89,9 +90,11 @@ void	steps_side_dist(t_data *data)
 	}
 	increment_steps(data);
 }
+
 void	ft_swap(t_data *data)
 {
 	void	*tmp;
+
 	tmp = data->ray.ray_ptr;
 	data->ray.ray_ptr = data->ray.ray_ptr2;
 	data->ray.ray_ptr2 = tmp;

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 12:06:22 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:03:49 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	draw_column(t_data *data)
 void	draw_background(t_data *data)
 {
 	t_img	*vision;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	vision = data->ray.ray_ptr;
 	i = 0;
@@ -105,19 +105,9 @@ int	raycasting(t_data *data)
 	draw_background(data);
 	while (data->ray.x < data->screen_width)
 	{
-		data->ray.camerax = 2 * data->ray.x / (float)data->screen_width - 1;
-		data->ray.raydirx = data->ray.dirx
-			+ data->ray.planex * data->ray.camerax;
-		data->ray.raydiry = data->ray.diry
-			+ data->ray.planey * data->ray.camerax;
-		data->ray.mapx = (int)data->ray.posx;
-		data->ray.mapy = (int)data->ray.posy;
+		raycasting_init(data);
 		deltadist_init(data);
-		data->ray.perpwalldist = 0;
-		data->ray.hit = 0;
 		steps_side_dist(data);
-		data->ray.movespeed = 0.01;
-		data->ray.rotspeed = 0.033;
 		draw_column(data);
 		data->ray.x++;
 	}
@@ -126,5 +116,6 @@ int	raycasting(t_data *data)
 	strafe_right_left(data);
 	rotate_right(data);
 	rotate_left(data);
+	ft_swap(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/05 17:33:49 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/12/06 16:51:57 by gbonnard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC 			= get_map.c \
 				raycast_move.c \
 				raycast_screen.c \
 				raycasting.c \
+				raycasting_utils.c \
 				main.c \
 				utils.c \
 				ft_simple_split.c\
@@ -26,6 +27,7 @@ SRC 			= get_map.c \
 				texture.c \
 				draw_utils.c\
 				parsing_utils.c\
+				events.c \
 
 RM 				= rm -rf
 LIBFT_PATH		=	./libft
