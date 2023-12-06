@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 12:37:51 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:36:16 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,12 @@
 
 void	init_player(t_data *data, int x, int y, char c)
 {
-	data->ray.planex = 0;
-	data->ray.planey = 0;
 	data->ray.angle = get_angle(c, data);
 	data->ray.posx = x;
 	data->ray.posy = y;
-	data->ray.dirx = 0;
-	data->ray.diry = 0;
 	get_vector_dir(data->ray.angle, &data->ray.dirx, &data->ray.diry);
 	data->screen_width = 800;
 	data->screen_height = 600;
-	data->ray.ray_ptr = NULL;
-	data->texture[0].img = NULL;
-	data->texture[1].img = NULL;
-	data->texture[2].img = NULL;
-	data->texture[3].img = NULL;
-	data->ceiling = 2552030;
-	data->floor = 0000000;
 }
 
 int	init_file(t_data *data)
@@ -68,27 +57,6 @@ void	init_texture(t_data *data)
 			* data->ray.raydirx;
 	data->tex.wallx -= floor(data->tex.wallx);
 
-}
-
-int	init_wall(t_data *data)
-{
-	data->wallno = mlx_xpm_file_to_image(data->mlx,
-			"asset/img/wallno.xpm", &(data->x), &data->y);
-	if (!data->wallno)
-		return (closer(data));
-	data->wallso = mlx_xpm_file_to_image(data->mlx,
-			"asset/img/wallso.xpm", &(data->x), &data->y);
-	if (!data->wallso)
-		return (closer(data));
-	data->wallea = mlx_xpm_file_to_image(data->mlx,
-			"asset/img/wallea.xpm", &(data->x), &data->y);
-	if (!data->wallea)
-		return (closer(data));
-	data->wallwe = mlx_xpm_file_to_image(data->mlx,
-			"asset/img/wallwe.xpm", &(data->x), &data->y);
-	if (!data->wallwe)
-		return (closer(data));
-	return (0);
 }
 
 int	init_data(t_data *data)

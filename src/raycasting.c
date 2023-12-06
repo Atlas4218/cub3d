@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:57:54 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,35 @@ void	draw_column(t_data *data)
 	return ;
 }
 
+void	draw_background(t_data *data)
+{
+	t_img	*vision;
+	int	i;
+	int	j;
+
+	vision = data->ray.ray_ptr;
+	i = 0;
+	while (i <= vision->height)
+	{
+		j = 0;
+		while (j <= vision->width)
+		{
+			if (i < vision->height / 2)
+				my_mlx_pixel_put(j++, i, vision, data->ceiling);
+			else
+				my_mlx_pixel_put(j++, i, vision, data->floor);
+		}
+		i++;
+	}
+}
+
 /*
 *	fonction global d'ou part les different calcul de raycasting pour etre gerer par mlx_loop_hook
 */
 int	raycasting(t_data *data)
 {
 	data->ray.x = 0;
-
+	draw_background(data);
 	while (data->ray.x < data->screen_width)
 	{
 		data->ray.camerax = 2 * data->ray.x / (float)data->screen_width - 1;

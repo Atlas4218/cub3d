@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 10:29:50 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	closer(t_data *data)
 		mlx_destroy_image(data->mlx, data->wallea);
 	if (data->wallwe)
 		mlx_destroy_image(data->mlx, data->wallwe);
+	if (data->img_map)
+		mlx_destroy_image(data->mlx, data->img_map);
 	if (data->mlx)
 	{
 		mlx_destroy_display(data->mlx);
@@ -83,7 +85,6 @@ int	handle_keyrelease(int keycode, t_data *data)
 
 void	cub(t_data *data)
 {
-	data->mlx = mlx_init();
 	init_wall(data);
 	data->mlx_win = mlx_new_window(data->mlx, 800, 600, "Cub3D");
 	data->ray.ray_ptr = mlx_new_image(data->mlx, 800, 600);
@@ -98,7 +99,6 @@ void	cub(t_data *data)
 
 void	minimap(t_data *data)
 {
-	data->mlx = mlx_init();
 	data->mlx_win = mlx_new_window(data->mlx, 500, 500, "Cub3D");
 	data->img_map = mlx_new_image(data->mlx, 500, 500);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
@@ -122,7 +122,7 @@ int	main(int argc, char **argv)
 	data.mappath = argv[1];
 	if (init_data(&data))
 		return (closer(&data));
-	cub(&data);	
+//	cub(&data);	
 	minimap(&data);
 	return (0);
 }

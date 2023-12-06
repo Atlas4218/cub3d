@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 16:20:15 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/06 10:59:00 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,30 @@ int	get_len_max(char **map)
 	return (lenmax);
 }
 
-int	fill_map(char **map)
+int	fill_map(char **map, t_data *data)
 {
-	int		lenmax;
 	int		i;
 	char	*temp;
 	char	*fill;
 
-	lenmax = get_len_max(map);
-	if (lenmax && lenmax < 3)
+	data->lenmax = get_len_max(map);
+	if (data->lenmax && data->lenmax < 3)
 		return (0);
-	i = 0;
-	while (map[i])
+	i = -1;
+	while (map[++i])
 	{
-		if (ft_strlen(map[i]) < (size_t)lenmax)
+		if (ft_strlen(map[i]) < (size_t)data->lenmax)
 		{
 			temp = map[i];
-			fill = malloc(lenmax - ft_strlen(map[i]));
+			fill = malloc(data->lenmax - ft_strlen(map[i]) + 1);
 			if (!fill)
 				return (perror("fill_map"), 0);
-			ft_memset(fill, 32, lenmax - ft_strlen(map[i]));
+			ft_memset(fill, 32, data->lenmax - ft_strlen(map[i]));
+			fill[data->lenmax - ft_strlen(map[i])] = 0;
 			map[i] = ft_strjoin(temp, fill);
 			free(temp);
 			free(fill);
 		}
-		i++;
 	}
 	return (1);
 }
@@ -103,7 +102,7 @@ int	parse_map(char	**map, t_data *data)
 	int	i;
 
 	i = 0;
-	if (!fill_map(map))
+	if (!fill_map(map, data))
 		return (1);
 	if (parse_first_last_line(map[i++]))
 		return (1);
@@ -115,5 +114,6 @@ int	parse_map(char	**map, t_data *data)
 	}
 	if (parse_first_last_line(map[i++]))
 		return (1);
+	data->nb_line_map = i;
 	return (0);
 }

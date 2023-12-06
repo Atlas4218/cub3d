@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/05 17:18:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 11:07:52 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_line
 	int	x_origin;
 	int	y_origin;
 	int	length;
+	int	end_x;
 	int	angle;
 }	t_line;
 
@@ -106,6 +107,8 @@ typedef struct s_data
 	t_xpm		img;
 	char		**file;
 	char		**map;
+	int			lenmax;
+	int			nb_line_map;
 	char		*mappath;
 	int			x;
 	int			y;
@@ -141,7 +144,6 @@ void	clear_tab(char **tab);
 int		init_data(t_data *data);
 void	init_player(t_data *data, int x, int y, char c);
 int		parse_file(char **file, t_data *data);
-int		fill_map(char **map);
 int		closer(t_data *data);
 char	**get_file(char *filename);
 int		get_angle(char c, t_data *data);
