@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/06 16:51:57 by gbonnard         ###   ########.fr        #
+#    Updated: 2023/12/07 14:41:09 by rastie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ lib :
 	make -C $(LIBFT_PATH)
 
 %.o: %.c
-	$(CC) $(FLAGS) -I/usr/include -Iminilibx-linux -O3 -c $< -o $(<:.c=.o) 
+	$(CC) $(FLAGS) -I/usr/include -Iminilibx-linux -c $< -o $(<:.c=.o) 
 
 
 $(NAME):		$(LIBFT) $(MINILIBX) $(OBJ) $(HEADER)

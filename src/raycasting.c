@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 13:14:00 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:29:58 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ int	raycasting(t_data *data)
 			data->ray.x++;
 		}
 	}
+	gest_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
 	move_forward_backward(data);
 	strafe_right_left(data);
 	rotate_right(data);
 	rotate_left(data);
-	minimap(data);
 	return (0);
 }
