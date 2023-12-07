@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 11:54:51 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:14:00 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,6 @@ int	raycasting(t_data *data)
 	strafe_right_left(data);
 	rotate_right(data);
 	rotate_left(data);
-	// minimap(data);
+	minimap(data);
 	return (0);
 }
