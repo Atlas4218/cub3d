@@ -45,29 +45,23 @@ void	draw_circle(t_circle circle, t_img *img, int color)
 	}
 }
 
-void	bresenham(t_img *img, t_line line, int color)
-{
-	float	dx;
-	float	dy;
-	float	max;
-
-	dx = line.end_x - line.x_origin;
-	dy = line.end_y - line.y_origin;
-	max = fmax(fabs(dx), fabs(dy));
-	dx /= max;
-	dy /= max;
-	while ((int)(line.x_origin - line.end_x)
-		|| (int)(line.y_origin - line.end_y))
-	{
-		my_mlx_pixel_put(line.x_origin, line.y_origin, img, color);
-		line.x_origin += dx;
-		line.y_origin += dy;
-	}
-}
-
 void	draw_line(t_line line, t_img *img, int color)
 {
-	line.end_x = line.length * cos(line.angle * M_PI / 180) + line.x_origin;
-	line.end_y = line.length * -sin(line.angle * M_PI / 180) + line.y_origin;
-	bresenham(img, line, color);
+	int		i;
+	int		x;
+	int		y;
+	double	dir_x;
+	double	dir_y;
+
+	dir_x = cos(line.angle * M_PI / 180);
+	dir_y = -sin(line.angle * M_PI / 180);
+	if (line.angle >= 180)
+		dir_x *= -1;
+	i = -1;
+	while (++i <= line.length)
+	{
+		x = dir_x * i + line.x_origin;
+		y = dir_y * i + line.y_origin;
+		my_mlx_pixel_put(x, y, img, color);
+	}
 }

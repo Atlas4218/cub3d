@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 17:19:28 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:49:05 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,6 @@ typedef struct s_line
 	int	y_origin;
 	int	length;
 	int	angle;
-	int	end_x;
-	int	end_y;
 }	t_line;
 
 typedef struct s_data

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/07 17:24:29 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:25:18 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,18 @@ int	gest_minimap(t_data *data)
 {
 	t_vector	player;
 	t_circle	point;
+	t_line		line;
 	t_img		*img;
 
 	player = data->ray;
 	(void)player;
 	img = data->ray.ray_ptr;
 	point = (struct s_circle){250, 250, 05};
+	if (player.diry > 0)
+		player.angle += 180;
+	line = (struct s_line){250, 250, 20, player.angle};
 	draw_map(data);
 	draw_circle(point, img, inv_color(data->floor));
+	draw_line(line, img, inv_color(data->floor));
 	return (0);
 }

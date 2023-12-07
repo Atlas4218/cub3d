@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:06:40 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 16:43:32 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:53:58 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	*get_img(char *filename, t_data *data)
 		return (perror("The file isn't a xpm file\n"), NULL);
 	}
 	result = mlx_xpm_file_to_image(data->mlx,
-			filename, &(data->x), &data->y);
+			filename, &(data->x), &(data->y));
 	if (!result)
 		return (perror(filename), NULL);
 	return (result);
