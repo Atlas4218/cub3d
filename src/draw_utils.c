@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 14:50:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 16:39:48 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:02:56 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void	draw_line(t_line line, t_img *img, int color)
 	y = line.y_origin;
 	end_x = line.length * cos(line.angle * M_PI / 180) + i;
 	if (line.angle == 270)
-			while (y >= line.y_origin - line.length)
-				my_mlx_pixel_put(i, y--, img, color);
+		while (y >= line.y_origin - line.length)
+			my_mlx_pixel_put(i, y--, img, color);
 	else if (line.angle == 90)
-			while (y >= line.y_origin + line.length)
-				my_mlx_pixel_put(i, y++, img, color);
+		while (y >= line.y_origin + line.length)
+			my_mlx_pixel_put(i, y++, img, color);
 	else if (line.angle > 90 && line.angle < 270)
 	{
 		while (i >= end_x)

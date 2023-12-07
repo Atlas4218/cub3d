@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 17:53:52 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/06 18:00:06 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	gest_minimap(t_data *data)
 
 void	minimap(t_data *data)
 {
-	data->img_map = mlx_new_image(data->mlx, 500, 500);
 	gest_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->img_map, 0, 0);
 }

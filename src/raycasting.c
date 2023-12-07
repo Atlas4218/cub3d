@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 17:51:46 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 11:54:51 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,22 @@ int	raycasting(t_data *data)
 {
 	data->ray.x = 0;
 	draw_background(data);
-	while (data->ray.x < data->screen_width)
+	if (data->map[(int)data->ray.posy][(int)data->ray.posx] == '0')
 	{
-		raycasting_init(data);
-		deltadist_init(data);
-		steps_side_dist(data);
-		draw_column(data);
-		data->ray.x++;
+		while (data->ray.x < data->screen_width)
+		{
+			raycasting_init(data);
+			deltadist_init(data);
+			steps_side_dist(data);
+			draw_column(data);
+			data->ray.x++;
+		}
 	}
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
 	move_forward_backward(data);
 	strafe_right_left(data);
 	rotate_right(data);
 	rotate_left(data);
-	ft_swap(data);
-	minimap(data);
+	// minimap(data);
 	return (0);
 }
