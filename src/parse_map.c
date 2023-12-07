@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:49:17 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,20 @@ int	parse_room(char **map, int i, t_data *data)
 	while (line[j])
 	{
 		if (!j && (line[j] != '1' && line[j] != ' '))
-			return (perror("Map not closed\n"), 1);
+			return (ft_print_error("Map not closed", 22), 1);
 		if (line[j] == 'N' || line[j] == 'E'
 			|| line[j] == 'W' || line[j] == 'S')
 		{
 			if (data->nbplayer++)
-				return (perror("Wrong number of player\n"), 1);
+				return (ft_print_error("Number of player", 22), 1);
 			init_player(data, j, i, line[j]);
 			line[j] = '0';
 		}
 		else if (line[j] != ' ' && line[j] != '1' && line[j] != '0')
-			return (perror("Unrecognised character\n"), 1);
+			return (ft_print_error("Unrecognised character", 22), 1);
 		if (j && has_space_nearby(map, i, j)
 			&& !is_void(line[j]) && line[j] != '1')
-			return (perror("Space wrongly placed\n"), 1);
+			return (ft_print_error("Space wrongly placed", 22), 1);
 		j++;
 	}
 	return (0);
@@ -91,7 +91,7 @@ int	parse_first_last_line(char *line)
 	while (*line)
 	{
 		if (*line != ' ' && *line != '1')
-			return (perror("Wrong number of player\n"), 1);
+			return (ft_print_error("Map not closed", 22), 1);
 		line ++;
 	}
 	return (0);

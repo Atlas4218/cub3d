@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 14:01:52 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:39:57 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,9 @@ int	get_fd(char *filename)
 		return (-1);
 	ext = ft_strrchr(filename, '.');
 	if (strcmp(ext, ".cub"))
-	{
-		errno = 22;
-		return (perror("Wrong type of file\n"), -1);
-	}
+		return (ft_print_error("Wrong type of file", 22), -1);
 	if (open(filename, O_DIRECTORY) >= 0)
-		return (perror("Argument is a directory\n"), -1);
+		return (ft_print_error("Argument is a directory", 22), -1);
 	file = open (filename, O_RDONLY, O_NOFOLLOW);
 	if (file < 0)
 		perror("Couldn't open file\n");

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/06 17:20:38 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ void	check_colors(t_data *data, char *file)
 
 void	check_element(t_data *data, char *file)
 {
-	if (!ft_strncmp(file, "N ", 2))
+	if (!ft_strncmp(file, "NO ", 3))
 	{
 		if (data->wallno)
 			free(data->wallno);
-		data->wallno = get_img(file + 1, data);
+		data->wallno = get_img(file + 2, data);
 	}
-	if (!ft_strncmp(file, "S ", 2))
+	if (!ft_strncmp(file, "SO ", 3))
 	{
 		if (data->wallso)
 			free(data->wallso);
-		data->wallso = get_img(file + 1, data);
+		data->wallso = get_img(file + 2, data);
 	}
 	if (!ft_strncmp(file, "EA ", 3))
 	{
@@ -65,12 +65,13 @@ int	parse_file(char **file, t_data *data)
 	while (*file && !**file)
 		file++;
 	if (!*file)
-	{
-		errno = 22;
-		return (perror("Missing/Wrong element(s)\n"), closer(data), 0);
-	}
+		return (ft_print_error("Missing/Wrong element(s)", 22),
+			closer(data), 0);
 	data->map = file;
-	if (parse_map(file, data) || !data->nbplayer)
+	if (parse_map(file, data))
 		return (1);
+	if (!data->nbplayer)
+		return (ft_print_error("Wrong number of player", 22),
+			closer(data), 0);
 	return (0);
 }

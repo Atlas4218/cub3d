@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 17:08:23 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 2)
-	{
-		errno = 22;
-		return (perror("Erreur"), errno);
-	}
+		return (ft_print_error("Nombre d'argument incorrect", 22), 22);
 	ft_bzero (&data, sizeof(data));
 	data.mappath = argv[1];
 	if (init_data(&data))

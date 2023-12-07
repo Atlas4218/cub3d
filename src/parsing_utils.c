@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:06:40 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/07 17:53:58 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,13 @@ int	get_color(char *src)
 	while (colors[i])
 	{
 		if (ft_strlen(colors[i]) > 3 || !is_all_digit(colors[i]))
-		{
-			errno = 22;
-			return (perror("Wrong value\n"), clear_tab(colors), -1);
-		}
+			return (ft_print_error("Wrong value", 22),
+				clear_tab(colors), -1);
 		i++;
 	}
 	if (i != 3)
-	{
-		errno = 22;
-		return (perror("The format is r,g,b\n"), clear_tab(colors), -1);
-	}
+		return (ft_print_error("The format is r,g,b", 22),
+			clear_tab(colors), -1);
 	color = encode_rgb(ft_atoi(colors[0]),
 			ft_atoi(colors[1]), ft_atoi(colors[2]));
 	return (clear_tab(colors), color);
@@ -78,10 +74,7 @@ void	*get_img(char *filename, t_data *data)
 	while (*filename == ' ')
 		filename++;
 	if (!ext || ft_strncmp(ext, ".xpm", 5))
-	{
-		errno = 22;
-		return (perror("The file isn't a xpm file\n"), NULL);
-	}
+		return (ft_print_error("The file isn't a xpm file", 22), NULL);
 	result = mlx_xpm_file_to_image(data->mlx,
 			filename, &(data->x), &(data->y));
 	if (!result)

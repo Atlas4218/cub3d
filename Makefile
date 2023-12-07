@@ -6,12 +6,12 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/07 14:41:09 by rastie           ###   ########.fr        #
+#    Updated: 2023/12/07 19:12:10 by rastie           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 			= cub3D
-CC 				= gcc
+CC 				= cc
 SRC 			= get_map.c \
 				init.c \
 				parse_map.c \
@@ -22,6 +22,7 @@ SRC 			= get_map.c \
 				raycasting_utils.c \
 				main.c \
 				utils.c \
+				utils_2.c\
 				ft_simple_split.c\
 				minimap.c\
 				texture.c \

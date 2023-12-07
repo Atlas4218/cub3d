@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 17:49:05 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:23:00 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,6 @@ void	draw_line(t_line line, t_img *img, int color);
 
 void	clear_tab(char **tab);
 int		closer(t_data *data);
+void	ft_print_error(char *msg, int value);
 
 #endif
