@@ -35,9 +35,6 @@ int	init_win(t_data *data)
 {
 	if (init_file(data))
 		return (closer(data));
-	data->img_map = mlx_new_image(data->mlx, 500, 500);
-	if (!data->img_map)
-		return (closer(data));
 	return (0);
 }
 

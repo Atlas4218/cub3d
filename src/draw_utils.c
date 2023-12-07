@@ -44,81 +44,30 @@ void	draw_circle(t_circle circle, t_img *img, int color)
 		i++;
 	}
 }
-void	bresenham(t_img *img, t_line line, int color)
-{   
-	int dx;
-	int dy;
-	int err;
-	int sx;
-	int sy;
 
-	dx = abs(line.end_x - line.x_origin);
-	dy = abs(line.end_y - line.y_origin);
-	if (line.x_origin < line.end_x) 
-		sx = 1;
-	else 
-		sx = -1;
-	if (line.y_origin < line.end_y) 
-		sy = 1;
-	else
-		sy = -1;
-	err = dx - dy;
-	while (line.x_origin != line.end_x || line.y_origin != line.end_y)
+void	bresenham(t_img *img, t_line line, int color)
+{
+	float	dx;
+	float	dy;
+	float	max;
+
+	dx = line.end_x - line.x_origin;
+	dy = line.end_y - line.y_origin;
+	max = fmax(fabs(dx), fabs(dy));
+	dx /= max;
+	dy /= max;
+	while ((int)(line.x_origin - line.end_x)
+		|| (int)(line.y_origin - line.end_y))
 	{
 		my_mlx_pixel_put(line.x_origin, line.y_origin, img, color);
-
-		if ((err << 1) > -dy)
-		{
-			err -= dy;
-			line.x_origin += sx;
-		}
-		if ((err << 1) < dx) 
-		{
-			err += dx;
-			line.y_origin += sy;
-		}
+		line.x_origin += dx;
+		line.y_origin += dy;
 	}
 }
 
 void	draw_line(t_line line, t_img *img, int color)
 {
-	int	end_x;
-	int	end_y;
-	int	i;
-	int	j;
-
-	i = line.x_origin;
-	j = line.y_origin;
-	end_x = line.length * cos(line.angle * M_PI / 180) + i;
-	end_y = line.length * sin(line.angle * M_PI / 180) + j;
-
+	line.end_x = line.length * cos(line.angle * M_PI / 180) + line.x_origin;
+	line.end_y = line.length * -sin(line.angle * M_PI / 180) + line.y_origin;
+	bresenham(img, line, color);
 }
-
-
-/*
-   end_x = length * cos(angle * M_PI / 180)
-
-
-   si l'angle est 90 ou 270
-   90
-   put_pixel
-   270
-   put_pixel
-
-   sinon si l'angle est compris entre 90 t 270 exclus
-   tant que x >= end_x
-   calcul y
-   put_pixel
-   i--
-   sinon
-   tant que x <= end_x
-   calcul y
-   put_pixel
-   i++
-
-   calcul de y
-   tan(angle) = sin/cos = Oppose sur ajacent
-   l'oppose = y = sin(angle)
-   tan(angle) * x
- */
-

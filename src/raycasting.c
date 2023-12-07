@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 17:16:01 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:21:30 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	deltadist_init(t_data *data)
 	if (data->ray.raydiry == 0)
 		data->ray.deltadistx = 0;
 	else if (data->ray.raydirx == 0)
-			data->ray.deltadistx = 1;
+		data->ray.deltadistx = 1;
 	else
 		data->ray.deltadistx = sqrt(1 + (data->ray.raydiry * data->ray.raydiry)
 				/ (data->ray.raydirx * data->ray.raydirx));
@@ -127,11 +127,11 @@ int	raycasting(t_data *data)
 			data->ray.x++;
 		}
 	}
+	gest_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->ray.ray_ptr, 0, 0);
 	move_forward_backward(data);
 	strafe_right_left(data);
 	rotate_right(data);
 	rotate_left(data);
-	minimap(data);
 	return (0);
 }
