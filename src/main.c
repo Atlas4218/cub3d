@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 10:58:59 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 18:02:18 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:08:23 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	closer(t_data *data)
 		mlx_destroy_image(data->mlx, data->wallea);
 	if (data->wallwe)
 		mlx_destroy_image(data->mlx, data->wallwe);
-	if (data->img_map)
-		mlx_destroy_image(data->mlx, data->img_map);
 	if (data->ray.ray_ptr)
 		mlx_destroy_image(data->mlx, data->ray.ray_ptr);
 	if (data->mlx)

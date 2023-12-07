@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 18:34:29 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 17:08:23 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ typedef struct s_data
 	int			screen_height;
 	void		*mlx;
 	void		*mlx_win;
-	t_img		*img_map;
 	t_texture	tex;
 	t_texture	texture[4];
 	t_vector	ray;

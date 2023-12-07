@@ -6,14 +6,15 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 18:33:58 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 14:29:58 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 17:08:23 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
 /*
-*	Initialisation et protection de DeltaDist (distance entre deux cote x ou y d'un carre en fontion du joueur)
+*	Initialisation et protection de DeltaDist 
+*	(distance entre deux cote x ou y d'un carre en fontion du joueur)
 */
 
 void	deltadist_init(t_data *data)
@@ -21,7 +22,7 @@ void	deltadist_init(t_data *data)
 	if (data->ray.raydiry == 0)
 		data->ray.deltadistx = 0;
 	else if (data->ray.raydirx == 0)
-			data->ray.deltadistx = 1;
+		data->ray.deltadistx = 1;
 	else
 		data->ray.deltadistx = sqrt(1 + (data->ray.raydiry * data->ray.raydiry)
 				/ (data->ray.raydirx * data->ray.raydirx));
@@ -97,7 +98,8 @@ void	draw_background(t_data *data)
 }
 
 /*
-*	fonction global d'ou part les different calcul de raycasting pour etre gerer par mlx_loop_hook
+*	fonction global d'ou part les different calcul
+*	de raycasting pour etre gerer par mlx_loop_hook
 */
 int	raycasting(t_data *data)
 {
