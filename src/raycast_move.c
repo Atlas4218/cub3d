@@ -6,11 +6,16 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:31:13 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:49:05 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:58:54 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
+/*
+*	Calcule si en fonction de la vitesse de deplacement et de la direction
+	du regard le mouvement ne sors pas des limites autorise
+*/
 
 void	move_forward_backward(t_data *data)
 {
@@ -61,6 +66,11 @@ void	strafe_right_left(t_data *data)
 			data->ray.posy = new_posy;
 	}
 }
+
+/*
+*	additionne ou soustrait une incrementation d'angle
+*	a l'angle de vision actuel du joueur
+*/
 
 void	rotate_right(t_data *data)
 {

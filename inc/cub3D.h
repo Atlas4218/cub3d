@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 18:34:29 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 15:15:24 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,9 @@
 # include <fcntl.h>
 # include <errno.h>
 
-typedef struct s_xpm
-{
-	int		width;
-	int		height;
-}	t_xpm;
-
 typedef struct s_vector
 {
 	int		*data_addr;
-	int		*data_addr2;
 	int		mapx;
 	int		mapy;
 	int		stepx;
@@ -42,7 +35,6 @@ typedef struct s_vector
 	int		hit;
 	int		side;
 	int		lineheight;
-	int		line_length;
 	int		drawstart;
 	int		drawend;	
 	int		bpp;
@@ -67,7 +59,6 @@ typedef struct s_vector
 	float	deltadistx;
 	float	deltadisty;
 	void	*ray_ptr;
-	void	*ray_ptr2;
 }	t_vector;
 
 typedef struct s_texture
@@ -107,7 +98,6 @@ typedef struct s_line
 
 typedef struct s_data
 {
-	t_xpm		img;
 	char		**file;
 	char		**map;
 	int			lenmax;
@@ -121,10 +111,6 @@ typedef struct s_data
 	t_img		*wallwe;
 	int			floor;
 	int			ceiling;
-	int			no;
-	int			so;
-	int			ea;
-	int			we;
 	int			nbplayer;
 	int			forward;
 	int			backward;
@@ -143,41 +129,69 @@ typedef struct s_data
 }	t_data;
 
 int		main(int argc, char **argv);
-void	clear_tab(char **tab);
+void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
+
+/*
+*	Initialisation
+*/
+
 int		init_data(t_data *data);
 void	init_player(t_data *data, int x, int y, char c);
-int		parse_file(char **file, t_data *data);
-int		closer(t_data *data);
-char	**get_file(char *filename);
-int		get_angle(char c, t_data *data);
 void	get_vector_dir(int angle, float *x, float *y);
+int		get_angle(char c, t_data *data);
+void	init_texture(t_data *data);
+int		init_wall(t_data *data);
+void	raycasting_init(t_data *data);
+
+/*
+*	Parsing
+*/
+
+int		parse_file(char **file, t_data *data);
+char	**get_file(char *filename);
+char	**ft_simple_split(char const *s, char c);
+int		has_space_nearby(char **map, int i, int j);
+int		inv_color(int original_color);
+int		get_color(char *src);
+void	*get_img(char *filename, t_data *data);
+int		parse_map(char	**map, t_data *data);
+int		is_void(char c);
+int		encode_rgb(int r, int g, int b);
+
+/*
+*	raycasting
+*/
+
 int		raycasting(t_data *data);
 void	steps_side_dist(t_data *data);
+
+/*
+*	Events
+*/
+
 void	move_forward_backward(t_data *data);
 void	strafe_right_left(t_data *data);
 void	rotate_right(t_data *data);
 void	rotate_left(t_data *data);
-void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
-char	**ft_simple_split(char const *s, char c);
-int		encode_rgb(int r, int g, int b);
-int		inv_color(int original_color);
-int		gest_minimap(t_data *data);
-void	my_mlx_pixel_put(int x, int y, t_img *img, int color);
-void	draw_circle(t_circle circle, t_img *img, int color);
-void	draw_line(t_line line, t_img *img, int color);
-int		is_void(char c);
-int		has_space_nearby(char **map, int i, int j);
-int		get_color(char *src);
-void	*get_img(char *filename, t_data *data);
-int		parse_map(char	**map, t_data *data);
-void	init_texture(t_data *data);
-int		init_wall(t_data *data);
-void	ft_swap(t_data *data);
 int		is_valid_move_x(t_data *data, float new_posx);
 int		is_valid_move_y(t_data *data, float new_posy);
-void	minimap(t_data *data);
 int		handle_keyrelease(int keycode, t_data *data);
 int		handle_keypress(int keycode, t_data *data);
-void	raycasting_init(t_data *data);
+
+/*
+* 	Minimap
+*/
+
+void	minimap(t_data *data);
+int		gest_minimap(t_data *data);
+void	draw_circle(t_circle circle, t_img *img, int color);
+void	draw_line(t_line line, t_img *img, int color);
+
+/*
+*	Leaks & errors
+*/
+
+void	clear_tab(char **tab);
+int		closer(t_data *data);
 
 #endif

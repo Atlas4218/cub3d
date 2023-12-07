@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/07 13:10:49 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:16:56 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	draw_map(t_data *data)
 
 int	gest_minimap(t_data *data)
 {
+
 	t_vector	player;
 	t_line		dir;
 	t_circle	point;

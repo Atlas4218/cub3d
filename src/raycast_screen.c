@@ -6,15 +6,17 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 17:32:01 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 17:55:58 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:17:27 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
 /*
-*	Empeche l'effet de FishEye et calcul la distance d'affichage et donc la taille visible des murs
+*	Empeche l'effet de FishEye et calcul la distance
+*	 d'affichage et donc la taille visible des murs
 */
+
 void	draw_start_end(t_data *data)
 {
 	if (data->ray.side == 0)
@@ -33,8 +35,10 @@ void	draw_start_end(t_data *data)
 }
 
 /*
-*	Calcule la distance total qui separe le joueur d'un mur et quel cote du mur est touche par son regard
+*	Calcule la distance total qui separe le joueur
+*	d'un mur et quel cote du mur est touche par son regard
 */
+
 void	increment_steps(t_data *data)
 {
 	while (data->ray.hit == 0)
@@ -60,8 +64,10 @@ void	increment_steps(t_data *data)
 }
 
 /*
-*	Calcule la direction du joueur et la distance qui le separe du prochain carre de map
+*	Calcule la direction du joueur et la distance
+*	qui le separe du prochain carre de map
 */
+
 void	steps_side_dist(t_data *data)
 {
 	if (data->ray.raydirx < 0)

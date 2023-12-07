@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:28:35 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 13:04:17 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:13:10 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_valid_move_x(t_data *data, float new_posx)
 	if (new_posx < 0)
 		return (0);
 	map_value = data->map[(int)data->ray.posy][(int)new_posx];
-	return (map_value);
+	return (map_value == '0');
 }
 
 int	is_valid_move_y(t_data *data, float new_posy)
@@ -29,7 +29,7 @@ int	is_valid_move_y(t_data *data, float new_posy)
 	if (new_posy < 0 || new_posy >= data->nb_line_map)
 		return (0);
 	map_value = data->map[(int)new_posy][(int)data->ray.posx];
-	return (map_value);
+	return (map_value == '0');
 }
 
 void	raycasting_init(t_data *data)

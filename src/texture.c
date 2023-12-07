@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:16:25 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/06 16:49:27 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:10:42 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ void	get_tex_addr(t_data *data)
 
 int	init_wall(t_data *data)
 {
-	data->texture[0].img = data->wallno;
-	data->texture[0].width = data->wallno->width;
-	data->texture[0].height = data->wallno->height;
-	data->texture[1].img = data->wallso;
-	data->texture[1].width = data->wallso->width;
-	data->texture[1].height = data->wallso->height;
-	data->texture[2].img = data->wallea;
-	data->texture[2].width = data->wallea->width;
-	data->texture[2].height = data->wallea->height;
-	data->texture[3].img = data->wallwe;
-	data->texture[3].width = data->wallwe->width;
-	data->texture[3].height = data->wallwe->height;
+	data->texture[2].img = data->wallno;
+	data->texture[2].width = data->wallno->width;
+	data->texture[2].height = data->wallno->height;
+	data->texture[3].img = data->wallso;
+	data->texture[3].width = data->wallso->width;
+	data->texture[3].height = data->wallso->height;
+	data->texture[1].img = data->wallea;
+	data->texture[1].width = data->wallea->width;
+	data->texture[1].height = data->wallea->height;
+	data->texture[0].img = data->wallwe;
+	data->texture[0].width = data->wallwe->width;
+	data->texture[0].height = data->wallwe->height;
 	get_tex_addr(data);
 	return (0);
 }
