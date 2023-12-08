@@ -6,48 +6,70 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:56:17 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:26:14 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	check_colors(t_data *data, char *file)
+int	check_colors(t_data *data, char *file)
 {
-	if (!ft_strncmp(file, "F ", 2))
+	if (!ft_strncmp(file, "F ", 2) && data->floor < 0)
+	{
 		data->floor = get_color(file + 1);
-	if (!ft_strncmp(file, "C ", 2))
+		if (data->floor < 0)
+			return (1);
+		return (0);
+	}
+	if (!ft_strncmp(file, "C ", 2) && data->ceiling < 0)
+	{
 		data->ceiling = get_color(file + 1);
+		if (data->ceiling < 0)
+			return (1);
+		return (0);
+	}
+	return (ft_print_error("Duplicate color key", 22), 1);
 }
 
-void	check_element(t_data *data, char *file)
+int	check_wall(t_data *data, char *file)
 {
-	if (!ft_strncmp(file, "NO ", 3))
+	if (!ft_strncmp(file, "NO ", 3) && !data->wallno)
 	{
-		if (data->wallno)
-			free(data->wallno);
 		data->wallno = get_img(file + 2, data);
+		return (!data->wallno);
 	}
-	if (!ft_strncmp(file, "SO ", 3))
+	else if (!ft_strncmp(file, "SO ", 3) && !data->wallso)
 	{
-		if (data->wallso)
-			free(data->wallso);
 		data->wallso = get_img(file + 2, data);
+		return (!data->wallso);
 	}
-	if (!ft_strncmp(file, "EA ", 3))
+	else if (!ft_strncmp(file, "EA ", 3) && !data->wallea)
 	{
-		if (data->wallea)
-			free(data->wallea);
 		data->wallea = get_img(file + 2, data);
+		return (!data->wallea);
 	}
-	if (!ft_strncmp(file, "WE ", 3))
+	else if (!ft_strncmp(file, "WE ", 3) && !data->wallwe)
 	{
-		if (data->wallwe)
-			free(data->wallwe);
 		data->wallwe = get_img(file + 2, data);
+		return (!data->wallwe);
 	}
-	check_colors(data, file);
+	return (ft_print_error("Duplicate img key", 22), 1);
 }
+
+int	check_element(t_data *data, char *file)
+{
+	if (!*file)
+		return (0);
+	else if (!ft_strncmp(file, "NO ", 3) || !ft_strncmp(file, "SO ", 3)
+		|| !ft_strncmp(file, "EA ", 3) || !ft_strncmp(file, "WE ", 3))
+		return (check_wall(data, file));
+	else if (!ft_strncmp(file, "F ", 2) || !ft_strncmp(file, "C ", 2))
+		return (check_colors(data, file));
+	else if (*file)
+		return (ft_print_error("Incorrect key", 22), 1);
+	return (0);
+}
+
 
 int	parse_file(char **file, t_data *data)
 {
@@ -59,13 +81,14 @@ int	parse_file(char **file, t_data *data)
 			|| data->floor < 0 || data->ceiling < 0
 		) && *file)
 	{
-		check_element(data, *file);
+		if (check_element(data, *file))
+			return (closer(data), 0);
 		file++;
 	}
 	while (*file && !**file)
 		file++;
 	if (!*file)
-		return (ft_print_error("Missing/Wrong element(s)", 22),
+		return (ft_print_error("Missing map", 22),
 			closer(data), 0);
 	data->map = file;
 	if (parse_map(file, data))

@@ -6,10 +6,10 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:01:09 by rastie            #+#    #+#             */
-/*   Updated: 2022/11/24 20:16:25 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 19:58:18 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"libft.h"
+#include "libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

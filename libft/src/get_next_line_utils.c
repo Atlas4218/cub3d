@@ -9,7 +9,7 @@
 /*   Updated: 2023/06/18 17:17:11 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include"get_next_line.h"
+#include "get_next_line.h"
 
 int	min(int a, int b)
 {

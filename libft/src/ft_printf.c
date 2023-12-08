@@ -9,7 +9,6 @@
 /*   Updated: 2022/12/13 17:50:33 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdarg.h>
 #include "ft_printf.h"
 
 static size_t	printarg(char *c, va_list args, int debug)

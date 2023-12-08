@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 10:45:30 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 19:39:14 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:03:51 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,16 @@
 int	get_len_max(char **map)
 {
 	int	lenmax;
+	int	end_of_map;
 
 	lenmax = 2;
+	end_of_map = 0;
 	while (*map)
 	{
+		if (!**map)
+			end_of_map = 1;
+		else if (end_of_map)
+			return (ft_print_error("Empty line in map", 22), 0);
 		if (ft_strlen(*map) > (size_t)lenmax)
 			lenmax = ft_strlen(*map);
 		map++;
@@ -36,9 +42,9 @@ int	fill_map(char **map, t_data *data)
 	char	*fill;
 
 	data->lenmax = get_len_max(map);
-	if (data->lenmax && data->lenmax < 3)
-		return (0);
 	i = -1;
+	if (!data->lenmax)
+		return (0);
 	while (map[++i])
 	{
 		if (ft_strlen(map[i]) < (size_t)data->lenmax)
@@ -80,7 +86,7 @@ int	parse_room(char **map, int i, t_data *data)
 			return (ft_print_error("Unrecognised character", 22), 1);
 		if (j && has_space_nearby(map, i, j)
 			&& !is_void(line[j]) && line[j] != '1')
-			return (ft_print_error("Space wrongly placed", 22), 1);
+			return (ft_print_error("Map not closed", 22), 1);
 		j++;
 	}
 	return (0);

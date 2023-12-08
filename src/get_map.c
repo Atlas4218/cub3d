@@ -51,7 +51,7 @@ int	get_fd(char *filename)
 	if (!filename)
 		return (-1);
 	ext = ft_strrchr(filename, '.');
-	if (strcmp(ext, ".cub"))
+	if (!ext || ft_strncmp(ext, ".cub", 4))
 		return (ft_print_error("Wrong type of file", 22), -1);
 	if (open(filename, O_DIRECTORY) >= 0)
 		return (ft_print_error("Argument is a directory", 22), -1);

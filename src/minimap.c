@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:16:15 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/07 18:25:18 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/08 16:42:21 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	draw_map(t_data *data)
 				my_mlx_pixel_put(
 					j++ - (player.posx - 2.5) * 100,
 					i - (player.posy - 2.5) * 100, img,
-					data->floor);
+					0xffffff);
 			else
 				my_mlx_pixel_put(j++ - (player.posx - 2.5) * 100,
 					i - (player.posy - 2.5) * 100, img,
-					data->ceiling);
+					0x5e505e);
 		}
 	}
 }
@@ -63,7 +63,7 @@ int	gest_minimap(t_data *data)
 		player.angle += 180;
 	line = (struct s_line){250, 250, 20, player.angle};
 	draw_map(data);
-	draw_circle(point, img, inv_color(data->floor));
-	draw_line(line, img, inv_color(data->floor));
+	draw_circle(point, img, 0x000000);
+	draw_line(line, img, 0x000000);
 	return (0);
 }

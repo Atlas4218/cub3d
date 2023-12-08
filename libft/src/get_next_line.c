@@ -6,7 +6,7 @@
 /*   By: rastie <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:10:25 by rastie            #+#    #+#             */
-/*   Updated: 2023/06/19 14:30:16 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/07 20:15:36 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -39,8 +39,8 @@ char	*get_next_line(int fd)
 	temp = result;
 	result = ft_substr(result, 0, ft_strchr(result, '\n') - result + 1);
 	if (ft_strchr(result, '\n'))
-		ft_memmove(buff[fd], ft_strchr(result, '\n') + 1,
-			ft_strlen(ft_strchr(result, '\n')));
+		ft_memmove(buff[fd], ft_strchr(temp, '\n') + 1,
+			ft_strlen(ft_strchr(temp, '\n')));
 	if (free(temp), !(*result))
 		return (free(result), NULL);
 	return (result);

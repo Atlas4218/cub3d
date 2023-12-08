@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 19:48:38 by roman             #+#    #+#             */
-/*   Updated: 2023/12/06 17:30:04 by gbonnard         ###   ########.fr       */
+/*   Updated: 2023/12/08 16:55:43 by rastie           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	**ft_simple_split(char const *s, char c)
 		if (*s)
 			s++;
 	}
+	if (i && s[-1] == c)
+		result[i++] = ft_strdup("");
 	result[i] = NULL;
 	return (result);
 }
