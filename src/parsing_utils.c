@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:06:40 by rastie            #+#    #+#             */
-/*   Updated: 2023/12/08 15:01:49 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/08 17:36:12 by gbonnard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ int	is_all_digit(char *str)
 	}
 	return (1);
 }
+
 int	check_value(char *colors)
 {
-	return ((int)(char)ft_atoi(colors) != ft_atoi(colors)
-		|| (int)(char)ft_atoi(colors) != ft_atoi(colors)
-		|| (int)(char)ft_atoi(colors) != ft_atoi(colors));
+	return ((int)(unsigned char)ft_atoi(colors) != ft_atoi(colors)
+		|| (int)(unsigned char)ft_atoi(colors) != ft_atoi(colors)
+		|| (int)(unsigned char)ft_atoi(colors) != ft_atoi(colors));
 }
-
 
 int	get_color(char *src)
 {

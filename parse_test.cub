@@ -1,12 +1,12 @@
-N asset/img/wallno.xpm
+
+NO asset/img/wallno.xpm
 
 EA asset/img/wallea.xpm
 WE asset/img/wallwe.xpm
 
-F 055,0,0
-C 0,055,0
-
-S asset/img/wallso.xpm
+F 0,0,0
+C 0,55,0
+SO asset/img/wallso.xpm
 
 111111111111111111              1111
 100000000000000001               101
@@ -20,13 +20,11 @@ S asset/img/wallso.xpm
 111011011110111011
 111111011110111001
 111111111111111111
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
 11111111111111111
 10000000000000001
 10000000000000001
