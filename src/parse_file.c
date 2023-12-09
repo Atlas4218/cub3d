@@ -70,7 +70,6 @@ int	check_element(t_data *data, char *file)
 	return (0);
 }
 
-
 int	parse_file(char **file, t_data *data)
 {
 	if (!file || !data)

@@ -6,7 +6,7 @@
 /*   By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 12:33:57 by gbonnard          #+#    #+#             */
-/*   Updated: 2023/12/07 19:23:00 by rastie           ###   ########.fr       */
+/*   Updated: 2023/12/09 07:50:06 by roman            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,9 @@ int		get_color(char *src);
 void	*get_img(char *filename, t_data *data);
 int		parse_map(char	**map, t_data *data);
 int		is_void(char c);
+int		is_all_digit(char *str);
+int		check_value(char *colors);
+int		has_space_nearby(char **map, int i, int j);
 int		encode_rgb(int r, int g, int b);
 
 /*

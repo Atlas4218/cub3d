@@ -6,7 +6,7 @@
 #    By: gbonnard <gbonnard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/10 11:29:27 by gbonnard          #+#    #+#              #
-#    Updated: 2023/12/07 19:12:10 by rastie           ###   ########.fr        #
+#    Updated: 2023/12/09 07:49:25 by roman            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC 			= get_map.c \
 				texture.c \
 				draw_utils.c\
 				parsing_utils.c\
+				get_values.c\
 				events.c \
 
 RM 				= rm -rf
