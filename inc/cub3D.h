@@ -182,7 +182,6 @@ int		handle_keypress(int keycode, t_data *data);
 * 	Minimap
 */
 
-void	minimap(t_data *data);
 int		gest_minimap(t_data *data);
 void	draw_circle(t_circle circle, t_img *img, int color);
 void	draw_line(t_line line, t_img *img, int color);
